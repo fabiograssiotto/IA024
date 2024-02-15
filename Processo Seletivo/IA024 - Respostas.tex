@@ -1,0 +1,2316 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Keep aspect ratio if custom image width or height is specified
+    \setkeys{Gin}{keepaspectratio}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{IA024 - Respostas}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \paragraph{Respostas das Questões do Processo Seletivo Aluno Especial
+IA-024 1S2024
+FEEC-UNICAMP}\label{respostas-das-questuxf5es-do-processo-seletivo-aluno-especial-ia-024-1s2024-feec-unicamp}\mbox{} \\
+
+
+Aluno: Fabio Grassiotto
+
+RA: 890441
+
+
+Link para o notebook com a implementação:
+
+https://colab.research.google.com/drive/1xtikSpHPHJylcKZA\_XAXJv9mSlV0cLS9?usp=sharing
+
+    \paragraph{Seção I}\label{seuxe7uxe3o-i}
+
+\subparagraph{I.1. Na célula de calcular o vocabulário, aproveite o laço
+sobre IMDB de treinamento e utilize um segundo contador para calcular o
+número de amostras positivas e amostras negativas. Calcule também o
+comprimento médio do texto em número de palavras dos textos das
+amostras.}\label{i.1.-na-cuxe9lula-de-calcular-o-vocabuluxe1rio-aproveite-o-lauxe7o-sobre-imdb-de-treinamento-e-utilize-um-segundo-contador-para-calcular-o-nuxfamero-de-amostras-positivas-e-amostras-negativas.-calcule-tambuxe9m-o-comprimento-muxe9dio-do-texto-em-nuxfamero-de-palavras-dos-textos-das-amostras.}\mbox{} \\
+
+Código implementado na seção I do notebook. Seguem os resultados
+obtidos:
+
+Amostras positivas, negativas e totais: Counter(\{`total': 25000, `pos':
+12500, `neg': 12500\})
+
+Comprimento médio do texto em palavras 270.68748
+
+    \subparagraph{I.2 Mostre as cinco palavras mais frequentes do
+vocabulário e as cinco palavras menos
+frequentes.}\label{i.2-mostre-as-cinco-palavras-mais-frequentes-do-vocabuluxe1rio-e-as-cinco-palavras-menos-frequentes.}\mbox{} \\
+
+(Utilizando o Tokenizador)
+
+Cinco palavras mais frequentes: {[}`the', `.', `,', `and', `a'{]}
+
+Cinco palavras menos frequentes: {[}`voicing', `hazard', `lynda', `gft',
+`watergate'{]}
+
+\subparagraph{Qual é o código do token que está sendo utilizado quando a
+palavra não está no
+vocabulário?}\label{qual-uxe9-o-cuxf3digo-do-token-que-estuxe1-sendo-utilizado-quando-a-palavra-nuxe3o-estuxe1-no-vocabuluxe1rio}\mbox{} \\
+
+Na função de dicionário dict.get() o segundo parâmetro indica o valor
+default caso a palavra não seja encontrada no dicionário. Nesse caso o
+código do token usado é o número zero.
+
+\subparagraph{Número de tokens que não estão no vocabulário na base de
+treinamento:}\label{nuxfamero-de-tokens-que-nuxe3o-estuxe3o-no-vocabuluxe1rio-na-base-de-treinamento}
+
+174226
+
+    \paragraph{I.3.a) Qual é a razão pela qual o modelo preditivo conseguiu
+acertar 100\% das amostras de teste do dataset selecionado com apenas as
+primeiras 200
+amostras?}\label{i.3.a-qual-uxe9-a-razuxe3o-pela-qual-o-modelo-preditivo-conseguiu-acertar-100-das-amostras-de-teste-do-dataset-selecionado-com-apenas-as-primeiras-200-amostras}\mbox{} \\
+
+Ao reduzirmos a base de treinamento para apenas 200 amostras, a base se
+tornou totalmente desbalanceada. Como pudemos verificar, temos 200
+amostras classificadas como negativas e nenhuma como positiva. Portanto
+a taxa de acurácia calculada sobre a classificação da base de testes
+depende unicamente da percentagem de amostras positivas ou negativas
+nesta base.
+
+\paragraph{I.3.b) Modifique a forma de selecionar 200 amostras do
+dataset, porém garantindo que ele continue balanceado, isto é,
+aproximadamente 100 amostras positivas e 100 amostras
+negativas.}\label{i.3.b-modifique-a-forma-de-selecionar-200-amostras-do-dataset-poruxe9m-garantindo-que-ele-continue-balanceado-isto-uxe9-aproximadamente-100-amostras-positivas-e-100-amostras-negativas.}\mbox{} \\
+
+Para obtermos um dataset balanceado, usaremos uma função que seleciona
+amostras do dataset de acordo com a classificação e cria um dataset com
+a quantidade de amostras de cada classificação desejada conforme abaixo.
+
+    \paragraph{Seção II}\label{seuxe7uxe3o-ii}\mbox{} \\
+
+\subparagraph{II.1.a) Investigue o dataset criado na linha 24. Faça um
+código que aplique um laço sobre o dataset train\_data e calcule
+novamente quantas amostras positivas e negativas do
+dataset.}\label{ii.1.a-investigue-o-dataset-criado-na-linha-24.-fauxe7a-um-cuxf3digo-que-aplique-um-lauxe7o-sobre-o-dataset-train_data-e-calcule-novamente-quantas-amostras-positivas-e-negativas-do-dataset.}\mbox{} \\
+
+Seção do código implementado:
+
+\begin{verbatim}
+counter_lbl = Counter({"pos": 0, "neg": 0, "total": 0})
+words_encoded = 0
+for (oneHot, sentiment) in train_data:
+
+    words = oneHot.tolist()
+    label = sentiment.item()
+
+    # Número de amostras positivas e negativas
+    if (label == 1):
+      counter_lbl['neg'] += 1
+    else:
+      counter_lbl['pos'] += 1
+    counter_lbl['total'] += 1
+
+    hot_encoded = sum(words[i] for i in range(len(words)) if words[i] != 0)
+    words_encoded +=  hot_encoded
+
+avg_words_enc = words_encoded / counter_lbl['total']
+\end{verbatim}
+
+\subparagraph{II.1.b) Calcule também o número médio de palavras
+codificadas em cada vetor
+one-hot.}\label{ii.1.b-calcule-tambuxe9m-o-nuxfamero-muxe9dio-de-palavras-codificadas-em-cada-vetor-one-hot.}
+
+Quantidade média de palavras codificadas em cada vetor one-hot 139.59268
+
+\paragraph{Compare este valor com o comprimento médio de cada texto
+(contado em palavras), conforme calculado no exercício I.1.c. e explique
+a
+diferença.}\label{compare-este-valor-com-o-comprimento-muxe9dio-de-cada-texto-contado-em-palavras-conforme-calculado-no-exercuxedcio-i.1.c.-e-explique-a-diferenuxe7a.}\mbox{} \\
+
+No exercício I.1.c, o comprimento médio do texto em palavras depois de
+passar pelo tokenizador foi de cerca de 270 palavras. Essa diferença do
+vetor One-Hot se deve ao fato que o vetor one-hot só codifica as
+palavras que foram identificadas no dicionário, enquanto que o
+comprimento médio considera todas as palavras das sentenças. Ou seja,
+palavras que não foram codificadas no dicionário serão representadas por
+zeros.
+
+    \subparagraph{II.2.a) Medição dos tempos de
+loop}\label{ii.2.a-mediuxe7uxe3o-dos-tempos-de-loop}\mbox{} \\
+
+Notamos que o tempo do passo do forward leva mais tempo que o passo de
+backward, conforme os dados obtidos abaixo para a primeira época do
+treinamento. Também notamos que a maior parte to tempo do loop de
+forward é gasto com a transferência dos dados da CPU para a GPU (97\% no
+primeiro loop).
+
+\begin{verbatim}
+Loop # 1
+Tempo de loop =  0.048320770263671875
+Forward pass =  0.047322750091552734
+Gpu copy = 97.88851606662435 %
+Model processing = 2.1114839333756574 %
+Backward pass =  0.0009980201721191406
+
+Loop # 2
+Tempo de loop =  0.007141590118408203
+Forward pass =  0.005140781402587891
+Gpu copy = 80.50737408403673 %
+Model processing = 19.49262591596327 %
+Backward pass =  0.0020008087158203125
+\end{verbatim}
+
+\subparagraph{II.2.b) Trecho que precisa ser otimizado. (Esse é um
+problema mais
+difícil)}\label{ii.2.b-trecho-que-precisa-ser-otimizado.-esse-uxe9-um-problema-mais-difuxedcil}\mbox{} \\
+
+Para otimizarmos o loop, o carregamento dos dados em GPU pode ser
+realizado pelo Dataloader fora do loop de treinamento, para tanto
+alterando o método \textbf{init}() da classe IMDBDataset.
+
+\begin{verbatim}
+def __init__(self, split, vocab):
+    #self.data = list(IMDB(split=split))[:n_samples]
+    self.data = list(balanced_dataset(IMDB(split=split), n_samples))        
+    self.vocab = vocab
+\end{verbatim}
+
+\subparagraph{II.2.c) Otimize o código e explique
+aqui.}\label{ii.2.c-otimize-o-cuxf3digo-e-explique-aqui.}\mbox{} \\
+
+Substituimos então com a nova implementação, onde o dataset inteiro é
+pré-processado, codificado em forma One-Hot (uma vez que tensores não
+suportam strings) e movido para a GPU antes do processo de treinamento:
+
+\begin{verbatim}
+def __init__(self, split, vocab):
+    
+    # II.2.b) Trecho que precisa ser otimizado. (Esse é um problema mais difícil)
+    self.data = list(balanced_dataset(IMDB(split='train'), n_samples))
+
+    if preload_to_gpu:          
+        labels = [x[0] for x in self.data]
+        lines = [x[1] for x in self.data]
+
+        # One-Hot Encoding
+        self.labels_enc = []
+        for l in labels:
+        l = 1 if l == 1 else 0
+        self.labels_enc.append(l)
+        self.labels_enc = torch.tensor(self.labels_enc)
+        self.labels_enc = self.labels_enc.to(device)
+
+        self.lines_enc = []
+        for l in lines:
+        X = torch.zeros(len(vocab) + 1)
+        for word in encode_sentence(l, vocab):
+            X[word] = 1
+        self.lines_enc.append(X)
+        self.lines_enc = [tensor.to(device) for tensor in self.lines_enc]
+
+    self.vocab = vocab
+\end{verbatim}
+
+\subparagraph{Comparação do tempo de treinamento com a otimização (GPU
+RTX2060
+local):}\label{comparauxe7uxe3o-do-tempo-de-treinamento-com-a-otimizauxe7uxe3o-gpu-rtx2060-local}\mbox{} \\
+
+Sem pre-load em GPU:
+
+\begin{verbatim}
+Epoch [1/5],             Loss: 0.6911,             Elapsed Time: 61.36 sec
+Epoch [2/5],             Loss: 0.6929,             Elapsed Time: 58.69 sec
+Epoch [3/5],             Loss: 0.6984,             Elapsed Time: 58.95 sec
+Epoch [4/5],             Loss: 0.6792,             Elapsed Time: 58.60 sec
+Epoch [5/5],             Loss: 0.6874,             Elapsed Time: 58.59 sec
+\end{verbatim}
+
+Com pre-load em GPU (RTX2060)
+
+\begin{verbatim}
+Epoch [1/5],             Loss: 0.6896,             Elapsed Time: 3.81 sec
+Epoch [2/5],             Loss: 0.6925,             Elapsed Time: 0.58 sec
+Epoch [3/5],             Loss: 0.6933,             Elapsed Time: 0.64 sec
+Epoch [4/5],             Loss: 0.6890,             Elapsed Time: 0.58 sec
+Epoch [5/5],             Loss: 0.6904,             Elapsed Time: 0.57 sec
+\end{verbatim}
+
+Notamos, no entanto, que o uso de mémória na GPU se torna muito maior,
+conforme pode ser visualizado abaixo (5Gb/6Gb total):
+
+\begin{verbatim}
+[venv:ml] $ nvidia-smi
+Mon Feb 12 08:23:42 2024
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 516.94       Driver Version: 516.94       CUDA Version: 11.7     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| N/A   76C    P8    12W /  N/A |   5035MiB /  6144MiB |      1%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+\end{verbatim}
+
+    \subparagraph{II.3 Faça a melhor escolha do LR, analisando o valor da
+acurácia no conjunto de teste, utilizando para cada valor de LR, a
+acurácia obtida. Faça um gráfico de Acurácia vs LR e escolha o LR que
+forneça a maior acurácia
+possível.}\label{ii.3-fauxe7a-a-melhor-escolha-do-lr-analisando-o-valor-da-acuruxe1cia-no-conjunto-de-teste-utilizando-para-cada-valor-de-lr-a-acuruxe1cia-obtida.-fauxe7a-um-gruxe1fico-de-acuruxe1cia-vs-lr-e-escolha-o-lr-que-forneuxe7a-a-maior-acuruxe1cia-possuxedvel.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{lr\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0001}\PY{p}{,} \PY{l+m+mf}{0.001}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{]}
+\PY{n}{acc\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{lr} \PY{o+ow}{in} \PY{n}{lr\PYZus{}list}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{LR = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+    \PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)} \PY{c+c1}{\PYZsh{} to reset weights}
+    \PY{n}{train\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+    \PY{n}{acc\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{eval\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lr\PYZus{}list}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{acc\PYZus{}list}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+LR =  0.0001
+Epoch [1/5],               Loss: 0.6939,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5000
+Epoch [2/5],               Loss: 0.6937,               Elapsed Time: 0.46 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5003
+Epoch [3/5],               Loss: 0.6941,               Elapsed Time: 0.47 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5002
+Epoch [4/5],               Loss: 0.6942,               Elapsed Time: 0.49 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5003
+Epoch [5/5],               Loss: 0.6954,               Elapsed Time: 0.51 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5002
+Test Accuracy: 52.412\%
+
+LR =  0.001
+Epoch [1/5],               Loss: 0.6956,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.4998
+Epoch [2/5],               Loss: 0.6914,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5000
+Epoch [3/5],               Loss: 0.6853,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5003
+Epoch [4/5],               Loss: 0.6860,               Elapsed Time: 0.36 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.4999
+Epoch [5/5],               Loss: 0.7005,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.4990
+Test Accuracy: 54.152\%
+
+LR =  0.01
+Epoch [1/5],               Loss: 0.6765,               Elapsed Time: 0.36 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5000
+Epoch [2/5],               Loss: 0.6476,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.4998
+Epoch [3/5],               Loss: 0.5837,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5001
+Epoch [4/5],               Loss: 0.4483,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5000
+Epoch [5/5],               Loss: 0.5591,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5001
+Test Accuracy: 82.02\%
+
+LR =  0.1
+Epoch [1/5],               Loss: 0.3548,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5001
+Epoch [2/5],               Loss: 0.2222,               Elapsed Time: 0.36 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5007
+Epoch [3/5],               Loss: 0.2340,               Elapsed Time: 0.36 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5002
+Epoch [4/5],               Loss: 0.3581,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5002
+Epoch [5/5],               Loss: 0.3277,               Elapsed Time: 0.37 sec,
+Loader Iterations: 196,               Spls lst batch: 40 ,               R avg:
+0.5004
+Test Accuracy: 88.212\%
+
+[0.0001, 0.001, 0.01, 0.1]
+[52.412, 54.152, 82.02, 88.212]
+
+    \end{Verbatim}
+
+    \subparagraph{II.3.a) Gráfico Acurácia vs
+LR}\label{ii.3.a-gruxe1fico-acuruxe1cia-vs-lr}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{darkgrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{lr\PYZus{}list}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{acc\PYZus{}list}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Add labels and title}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Learning Rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy vs Learning Rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Show the plot}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{IA024 - Respostas_files/IA024 - Respostas_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{II.3.b) Valor ótimo do
+LR}\label{ii.3.b-valor-uxf3timo-do-lr}\mbox{} \\
+
+Notamos que o valor ótimo para a Learning Rate foi de cerca de 0.1, com
+crescimento exponencial ao aumentá-la. Valores acima deste são grandes
+demais e não levam à otimização do modelo.
+
+\subparagraph{II.3.c) Mostre a equação utilizada no gradiente
+descendente e qual é o papel do LR no ajuste dos parâmetros (weights) do
+modelo da rede
+neural.}\label{ii.3.c-mostre-a-equauxe7uxe3o-utilizada-no-gradiente-descendente-e-qual-uxe9-o-papel-do-lr-no-ajuste-dos-paruxe2metros-weights-do-modelo-da-rede-neural.}\mbox{} \\
+
+No processo de otimização de uma função, a fórmula utilizada para a
+estimativa do próximo valor da função é dada por:
+
+\begin{verbatim}
+valor atualizado = valor anterior - learning rate*gradiente
+\end{verbatim}
+
+Portanto o papel da LR é definir qual é o \emph{tamanho} do passo a ser
+utilizado no processo de atualização.
+
+    \subparagraph{II.4 Melhores a forma de tokenizar, isto é, pré-processar
+o dataset de modo que a codificação seja indiferente das palavras serem
+escritas com maiúsculas ou minúsculas e sejam pouco influenciadas pelas
+pontuações.}\label{ii.4-melhores-a-forma-de-tokenizar-isto-uxe9-pruxe9-processar-o-dataset-de-modo-que-a-codificauxe7uxe3o-seja-indiferente-das-palavras-serem-escritas-com-maiuxfasculas-ou-minuxfasculas-e-sejam-pouco-influenciadas-pelas-pontuauxe7uxf5es.}\mbox{} \\
+
+\subparagraph{II.4.a) Mostre os trechos modificados para este novo
+tokenizador, tanto na seção I - Vocabulário, como na seção II -
+Dataset.}\label{ii.4.a-mostre-os-trechos-modificados-para-este-novo-tokenizador-tanto-na-seuxe7uxe3o-i---vocabuluxe1rio-como-na-seuxe7uxe3o-ii---dataset.}\mbox{} \\
+
+Na seção I - Vocabulário:
+
+\begin{verbatim}
+from torchtext.data import get_tokenizer
+
+for (label, line) in list(IMDB(split='train'))[:n_samples]:
+    if (use_tokenizer):
+      tokenizer = get_tokenizer('basic_english')
+      # tokenize the sentence
+      line = tokenizer(line)
+    counter.update(line.split())
+
+    # Número de amostras positivas e negativas
+    if (label == 1):
+      counter_lbl['neg'] += 1
+    else:
+      counter_lbl['pos'] += 1
+    counter_lbl['total'] += 1
+
+    # Comprimento médio do texto das reviews em palavras
+    tokenizer = get_tokenizer('basic_english')
+
+    # tokenize the sentence
+    tokens = tokenizer(line)
+
+    # count the number of words
+    total_review_len += len(tokens)
+\end{verbatim}
+
+Na Seção II - Dataset: São apenas necessárias alterações no encoder da
+sentença, conforme abaixo.
+
+\begin{verbatim}
+def encode_sentence(sentence, vocab, use_tokenizer):
+    if (use_tokenizer):
+       sentence = tokenizer(sentence)
+       return [vocab.get(word, 0) for word in sentence]
+    else:
+      return [vocab.get(word, 0) for word in sentence.split()] # 0 for OOV
+\end{verbatim}
+
+    \subparagraph{II.4.b) Recalcule novamente os valores do exercício I.2.c
+- número de tokens unknown, e apresente uma tabela comparando os novos
+valores com os valores obtidos com o tokenizador original e justifique
+os resultados
+obtidos.}\label{ii.4.b-recalcule-novamente-os-valores-do-exercuxedcio-i.2.c---nuxfamero-de-tokens-unknown-e-apresente-uma-tabela-comparando-os-novos-valores-com-os-valores-obtidos-com-o-tokenizador-original-e-justifique-os-resultados-obtidos.}\mbox{} \\
+
+Sem o tokenizador:
+
+566141
+
+Com o tokenizador:
+
+174226
+
+Estes valores se justificam pelo fato que o tokenizador altera as
+palavras das sentenças, mantendo apenas radicais, de forma que menos
+palavras não serão encontradas na base do vocabulário.
+
+\subparagraph{II.4.c) Execute agora no notebook inteiro com o novo
+tokenizador e veja o novo valor da acurácia obtido com a melhoria do
+tokenizador.}\label{ii.4.c-execute-agora-no-notebook-inteiro-com-o-novo-tokenizador-e-veja-o-novo-valor-da-acuruxe1cia-obtido-com-a-melhoria-do-tokenizador.}\mbox{} \\
+
+Sem o tokenizador:
+
+Test Accuracy: 73.45\% (Para LR = 0.1)
+
+Com o tokenizador
+
+Test Accuracy: 88.47\% (Para LR = 0.1)
+
+O aumento da acurácia é justificado pelo fato que menos palavras de cada
+sentença não serão reconhecidas (OneHot encoding não terá tantos valores
+zerados)
+
+\subparagraph{Os dados obtidos estão resumidos na tabela
+abaixo.}\label{os-dados-obtidos-estuxe3o-resumidos-na-tabela-abaixo.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{tabulate} \PY{k+kn}{import} \PY{n}{tabulate}
+
+\PY{c+c1}{\PYZsh{} Sample data}
+\PY{n}{data} \PY{o}{=} \PY{p}{[}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sem Tokenizador}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{566141}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{73.45}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Com Tokenizador}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{174226}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{88.47}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Headers}
+\PY{n}{headers} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Uso do Tokenizador}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tokens Unknown}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Print the table}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tabulate}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{headers}\PY{o}{=}\PY{n}{headers}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Uso do Tokenizador      Tokens Unknown  Test Accuracy
+--------------------  ----------------  ---------------
+Sem Tokenizador                 566141  73.45\%
+Com Tokenizador                 174226  88.47\%
+    \end{Verbatim}
+
+    \paragraph{Seção III}\label{seuxe7uxe3o-iii}
+
+\subparagraph{Vamos estudar agora o Data Loader da seção III do
+notebook. Em primeiro lugar anote a acurácia do notebook com as
+melhorias de eficiência de rodar em GPU, com ajustes de LR e do
+tokenizador. Em seguida mude o parâmetro shuffle na construção do objeto
+train\_loader para False e execute novamente o notebook por completo e
+meça novamente a
+acurácia.}\label{vamos-estudar-agora-o-data-loader-da-seuxe7uxe3o-iii-do-notebook.-em-primeiro-lugar-anote-a-acuruxe1cia-do-notebook-com-as-melhorias-de-eficiuxeancia-de-rodar-em-gpu-com-ajustes-de-lr-e-do-tokenizador.-em-seguida-mude-o-paruxe2metro-shuffle-na-construuxe7uxe3o-do-objeto-train_loader-para-false-e-execute-novamente-o-notebook-por-completo-e-meuxe7a-novamente-a-acuruxe1cia.}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{tabulate} \PY{k+kn}{import} \PY{n}{tabulate}
+
+\PY{c+c1}{\PYZsh{} Sample data}
+\PY{n}{data} \PY{o}{=} \PY{p}{[}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Com Shuffle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{88.47}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sem Shuffle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{50.00}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Headers}
+\PY{n}{headers} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Shuffle dos dados de Treinamento}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Print the table}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tabulate}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{headers}\PY{o}{=}\PY{n}{headers}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Shuffle dos dados de Treinamento    Test Accuracy
+----------------------------------  ---------------
+Com Shuffle                         88.47\%
+Sem Shuffle                         50.00\%
+    \end{Verbatim}
+
+    \subparagraph{III.1.a) Explique as duas principais vantagens do uso de
+batch no treinamento de redes
+neurais.}\label{iii.1.a-explique-as-duas-principais-vantagens-do-uso-de-batch-no-treinamento-de-redes-neurais.}\mbox{} \\
+
+O uso de lotes em treinamento é importante por causa do aumento da
+eficiência computacional e para aumentar a estabilidade do gradiente. A
+eficiência computacional é aumentada pois com lotes maiores a
+paralelização do processamento em GPUs é mais bem aproveitada, enquanto
+que a estabilidade do gradiente é aumentada durante o treinamento pois
+em cada iteração, o gradiente é calculado com base na função de perda
+para o lote inteiro reduzindo a variabilidade do gradiente em comparação
+com o cálculo individual para cada exemplo.
+
+\subparagraph{III.1.b) Explique por que é importante fazer o
+embaralhamento das amostras do batch em cada nova
+época.}\label{iii.1.b-explique-por-que-uxe9-importante-fazer-o-embaralhamento-das-amostras-do-batch-em-cada-nova-uxe9poca.}\mbox{} \\
+
+O embarelhamento das amostras de batch do treinamento é essencial para
+aumentar a generabilidade do modelo. As razões para tanto são:
+
+\begin{itemize}
+\tightlist
+\item
+  Redução do viés das amostras ordenadas do início ao fim do dataset.
+\item
+  Estabilização do gradiente (redução da oscilação causada por amostras
+  ordenadas).
+\item
+  Melhoria da convergência, pois amostras agrupadas de uma classe
+  dificultam o processo de aprendizado da rede neural.
+\end{itemize}
+
+Em geral o embaralhamento de amostras de treinamento é um processo usual
+para a redução da generalização e a obtenção de um modelo de melhores
+características.
+
+\subparagraph{III.1.c) Se você alterar o shuffle=False no instanciamento
+do objeto test\_loader, por que o cálculo da acurácia não se
+altera?}\label{iii.1.c-se-vocuxea-alterar-o-shufflefalse-no-instanciamento-do-objeto-test_loader-por-que-o-cuxe1lculo-da-acuruxe1cia-nuxe3o-se-altera}\mbox{} \\
+
+A acurácia não se altera pois em tempo de inferência (ou seja, fase de
+teste) os pesos do modelo não são alterados mais. Portanto, a base de
+testes é usada apenas para verificar a capacidade de generalização do
+modelo.
+
+    \subparagraph{III.2.a) Faça um laço no objeto train\_loader e meça
+quantas iterações o Loader tem. Mostre o código para calcular essas
+iterações. Explique o valor
+encontrado.}\label{iii.2.a-fauxe7a-um-lauxe7o-no-objeto-train_loader-e-meuxe7a-quantas-iterauxe7uxf5es-o-loader-tem.-mostre-o-cuxf3digo-para-calcular-essas-iterauxe7uxf5es.-explique-o-valor-encontrado.}\mbox{} \\
+
+Modificações no código de treinamento (função train\_mdl()) acima:
+
+\begin{verbatim}
+  for epoch in range(num_epochs):
+      start_time = time.time()  # Start time of the epoch
+      model.train()
+
+      loop_count = 0
+
+      train_loader_iterations = 0    
+      for inputs, labels in train_loader:
+          train_loader_iterations += 1
+\end{verbatim}
+
+Número de interações por época:
+
+\begin{verbatim}
+Epoch [1/5],               Loss: 0.3918,               Elapsed Time: 6.79 sec,               Loader Iterations: 196
+Epoch [2/5],               Loss: 0.3028,               Elapsed Time: 0.56 sec,               Loader Iterations: 196
+Epoch [3/5],               Loss: 0.1997,               Elapsed Time: 0.57 sec,               Loader Iterations: 196
+Epoch [4/5],               Loss: 0.1883,               Elapsed Time: 0.57 sec,               Loader Iterations: 196
+Epoch [5/5],               Loss: 0.3806,               Elapsed Time: 0.56 sec,               Loader Iterations: 196
+\end{verbatim}
+
+\subparagraph{III.2.b) Imprima o número de amostras do último batch do
+train\_loader e justifique o valor encontrado? Ele pode ser menor que o
+batch\_size?}\label{iii.2.b-imprima-o-nuxfamero-de-amostras-do-uxfaltimo-batch-do-train_loader-e-justifique-o-valor-encontrado-ele-pode-ser-menor-que-o-batch_size}\mbox{} \\
+
+\begin{verbatim}
+Number of samples in last batch: 40
+\end{verbatim}
+
+O valor encontrado é menor que o tamanho do batch size (nesse caso, 128)
+pois esta é a quantidade de amostras restantes nas base. Como temos 196
+iterações, o total de amostras nos primeiros 195 ciclos totaliza 24.960.
+Portanto, o último batch tem um total de 25.000 (tamanho da base) -
+24.960 = 40.
+
+\subparagraph{III.2.c) Calcule R, a relação do número de amostras
+positivas sobre o número de amostras no batch e no final encontre o
+valor médio de R, para ver se o data loader está entregando batches
+balanceados. Desta vez, em vez de fazer um laço explícito, utilize list
+comprehension para criar uma lista contendo a relação R de cada amostra
+no batch. No final, calcule a média dos elementos da lista para fornecer
+a resposta
+final.}\label{iii.2.c-calcule-r-a-relauxe7uxe3o-do-nuxfamero-de-amostras-positivas-sobre-o-nuxfamero-de-amostras-no-batch-e-no-final-encontre-o-valor-muxe9dio-de-r-para-ver-se-o-data-loader-estuxe1-entregando-batches-balanceados.-desta-vez-em-vez-de-fazer-um-lauxe7o-expluxedcito-utilize-list-comprehension-para-criar-uma-lista-contendo-a-relauxe7uxe3o-r-de-cada-amostra-no-batch.-no-final-calcule-a-muxe9dia-dos-elementos-da-lista-para-fornecer-a-resposta-final.}\mbox{} \\
+
+Médias de R por época:
+
+\begin{verbatim}
+R avg: 0.4999
+R avg: 0.5004
+R avg: 0.5003
+R avg: 0.4999
+R avg: 0.5000
+\end{verbatim}
+
+\subparagraph{\texorpdfstring{III.2.d) Mostre a estrutura de um dos
+batches. Cada batch foi criado no método \textbf{getitem} do Dataset,
+linha 20. É formado por uma tupla com o primeiro elemento sendo a
+codificação one-hot do texto e o segundo elemento o label esperado,
+indicando positivo ou negativo. Mostre o shape (linhas e colunas) e o
+tipo de dado (float ou integer), tanto da entrada da rede como do label
+esperado. Desta vez selecione um elemento do batch do train\_loader
+utilizando as funções next e iter: batch =
+next(iter(train\_loader)).}{III.2.d) Mostre a estrutura de um dos batches. Cada batch foi criado no método getitem do Dataset, linha 20. É formado por uma tupla com o primeiro elemento sendo a codificação one-hot do texto e o segundo elemento o label esperado, indicando positivo ou negativo. Mostre o shape (linhas e colunas) e o tipo de dado (float ou integer), tanto da entrada da rede como do label esperado. Desta vez selecione um elemento do batch do train\_loader utilizando as funções next e iter: batch = next(iter(train\_loader)).}}\label{iii.2.d-mostre-a-estrutura-de-um-dos-batches.-cada-batch-foi-criado-no-muxe9todo-getitem-do-dataset-linha-20.-uxe9-formado-por-uma-tupla-com-o-primeiro-elemento-sendo-a-codificauxe7uxe3o-one-hot-do-texto-e-o-segundo-elemento-o-label-esperado-indicando-positivo-ou-negativo.-mostre-o-shape-linhas-e-colunas-e-o-tipo-de-dado-float-ou-integer-tanto-da-entrada-da-rede-como-do-label-esperado.-desta-vez-selecione-um-elemento-do-batch-do-train_loader-utilizando-as-funuxe7uxf5es-next-e-iter-batch-nextitertrain_loader.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{my\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{batch} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{(}\PY{n}{my\PYZus{}loader}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Dado de entrada}
+\PY{n}{entrada} \PY{o}{=} \PY{n}{batch}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+\PY{n}{dado\PYZus{}entrada} \PY{o}{=} \PY{p}{(}\PY{n}{batch}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dado de entrada:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{dado\PYZus{}entrada}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{dado\PYZus{}entrada}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Label}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Label:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{lbl} \PY{o}{=} \PY{n}{batch}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lbl}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lbl}\PY{o}{.}\PY{n}{dtype}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Dado de entrada:
+torch.Size([20001])
+torch.float32
+
+Label:
+torch.Size([1])
+torch.int64
+    \end{Verbatim}
+
+    \subparagraph{III.3.a) Verifique a influência do batch size na acurácia
+final do modelo. Experimente usar um batch size de 1 amostra apenas e
+outro com mais de 128 e comente sobre os
+resultados.}\label{iii.3.a-verifique-a-influuxeancia-do-batch-size-na-acuruxe1cia-final-do-modelo.-experimente-usar-um-batch-size-de-1-amostra-apenas-e-outro-com-mais-de-128-e-comente-sobre-os-resultados.}\mbox{} \\
+
+Notei que o cálculo de perda da linha criterion() gera um erro com batch
+size = 1, então usei batch size = 2 para este exercício.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Acurácia com batch = 2}
+\PY{n}{train\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)} \PY{c+c1}{\PYZsh{} to reset weights}
+\PY{n}{train\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\PY{n}{eval\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Acurácia com batch = 256}
+\PY{n}{train\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{256}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)} \PY{c+c1}{\PYZsh{} to reset weights}
+\PY{n}{train\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\PY{n}{eval\PYZus{}mdl}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Epoch [1/5],               Loss: 0.0217,               Elapsed Time: 17.09 sec,
+Loader Iterations: 12500,               Spls lst batch: 2 ,               R avg:
+0.5000
+Epoch [2/5],               Loss: 0.5510,               Elapsed Time: 16.61 sec,
+Loader Iterations: 12500,               Spls lst batch: 2 ,               R avg:
+0.5000
+Epoch [3/5],               Loss: 0.3738,               Elapsed Time: 16.82 sec,
+Loader Iterations: 12500,               Spls lst batch: 2 ,               R avg:
+0.5000
+Epoch [4/5],               Loss: 0.0002,               Elapsed Time: 17.54 sec,
+Loader Iterations: 12500,               Spls lst batch: 2 ,               R avg:
+0.5000
+Epoch [5/5],               Loss: 0.0039,               Elapsed Time: 17.01 sec,
+Loader Iterations: 12500,               Spls lst batch: 2 ,               R avg:
+0.5000
+Test Accuracy: 86.568\%
+
+Epoch [1/5],               Loss: 0.4962,               Elapsed Time: 0.35 sec,
+Loader Iterations: 98,               Spls lst batch: 168 ,               R avg:
+0.4999
+Epoch [2/5],               Loss: 0.4107,               Elapsed Time: 0.35 sec,
+Loader Iterations: 98,               Spls lst batch: 168 ,               R avg:
+0.5003
+Epoch [3/5],               Loss: 0.3138,               Elapsed Time: 0.38 sec,
+Loader Iterations: 98,               Spls lst batch: 168 ,               R avg:
+0.5000
+Epoch [4/5],               Loss: 0.3772,               Elapsed Time: 0.36 sec,
+Loader Iterations: 98,               Spls lst batch: 168 ,               R avg:
+0.4999
+Epoch [5/5],               Loss: 0.2645,               Elapsed Time: 0.38 sec,
+Loader Iterations: 98,               Spls lst batch: 168 ,               R avg:
+0.5002
+Test Accuracy: 87.728\%
+
+    \end{Verbatim}
+
+    Pudemos verificar que o batch size muito reduzido aumenta em muito a
+acurácia, mas em contrapartida aumenta muito a complexidade
+computacional. O ganho da acurácia pode ser explicado pela melhoria na
+generalização. Nesse caso os pesos do modelo são atualizados depois da
+análise de cada amostra de forma independente. O aumento do batch size
+de 128 para 256 não trouxe ganhos na acurácia. Portanto, para datasets
+pequenos como o caso deste exercício, uma redução do tamanho do batch
+pode ser benéfico desde que o custo computacional não seja excessivo.
+
+    \paragraph{Seção IV}\label{seuxe7uxe3o-iv}
+
+\subparagraph{IV.1.a) Faça a predição do modelo utilizando um batch do
+train\_loader: extraia um batch do train\_loader, chame de (input,
+target), onde input é a entrada da rede e target é o label esperado.
+Como a rede está com seus parâmetros (weights) aleatórios, o logito de
+saída da rede será um valor aleatório, porém a chamada irá executar sem
+erros:}\label{iv.1.a-fauxe7a-a-prediuxe7uxe3o-do-modelo-utilizando-um-batch-do-train_loader-extraia-um-batch-do-train_loader-chame-de-input-target-onde-input-uxe9-a-entrada-da-rede-e-target-uxe9-o-label-esperado.-como-a-rede-estuxe1-com-seus-paruxe2metros-weights-aleatuxf3rios-o-logito-de-sauxedda-da-rede-seruxe1-um-valor-aleatuxf3rio-poruxe9m-a-chamada-iruxe1-executar-sem-erros}\mbox{} \\
+
+logit = model( input)
+
+aplique a função sigmoidal ao logito para convertê-lo numa probabilidade
+de valor entre 0 e 1.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{n}{new\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{128}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+\PY{n+nb}{input}\PY{p}{,} \PY{n}{target} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{(}\PY{n}{new\PYZus{}loader}\PY{p}{)}\PY{p}{)}
+\PY{n}{logit} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Define the sigmoid function}
+\PY{k}{def} \PY{n+nf}{sigmoid}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+  \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{torch}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{probability} \PY{o}{=} \PY{n}{sigmoid}\PY{p}{(}\PY{n}{logit}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}
+
+\PY{c+c1}{\PYZsh{} Cálculo da probabilidade para a primeira amostra}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Probabilidade: }\PY{l+s+si}{\PYZob{}}\PY{n}{probability}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ \PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Probabilidade: 47.73 \%
+    \end{Verbatim}
+
+    \subparagraph{IV.1.b) Agora, treine a rede executando o notebook todo e
+verifique se a acurácia está alta. Agora repita o exercício anterior,
+porém agora, compare o valor da probabilidade encontrada com o target
+esperado e verifique se ele acertou. Você pode considerar que se a
+probabilidade for maior que 0.5, pode-se dar o label 1 e se for menor
+que 0.5, o label 0. Observe isso que é feito na linha 11 da seção VI -
+Avaliação.}\label{iv.1.b-agora-treine-a-rede-executando-o-notebook-todo-e-verifique-se-a-acuruxe1cia-estuxe1-alta.-agora-repita-o-exercuxedcio-anterior-poruxe9m-agora-compare-o-valor-da-probabilidade-encontrada-com-o-target-esperado-e-verifique-se-ele-acertou.-vocuxea-pode-considerar-que-se-a-probabilidade-for-maior-que-0.5-pode-se-dar-o-label-1-e-se-for-menor-que-0.5-o-label-0.-observe-isso-que-uxe9-feito-na-linha-11-da-seuxe7uxe3o-vi---avaliauxe7uxe3o.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{n}{new\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{128}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+\PY{n+nb}{input}\PY{p}{,} \PY{n}{target} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{(}\PY{n}{new\PYZus{}loader}\PY{p}{)}\PY{p}{)}
+\PY{n}{logit} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}\PY{o}{.}\PY{n}{cpu}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{predicted} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{sigmoid}\PY{p}{(}\PY{n}{logit}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predição = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{predicted}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Target Esperado = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{target}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Predição =  0.0
+Target Esperado =  1
+    \end{Verbatim}
+
+    Se você der um print no modelo: print(model), você obterá:
+
+\begin{verbatim}
+OneHotMLP(
+  (fc1): Linear(in_features=20001, out_features=200, bias=True)  
+  (fc2): Linear(in_features=200, out_features=1, bias=True)  
+  (relu): ReLU()
+)
+\end{verbatim}
+
+Os pesos da primeira camada podem ser visualizados com model.fc1.weight
+e o elemento constante (bias) pode ser visualizado com model.fc1.bias\\
+Calcule o número de parâmetros do modelo, preenchendo a seguinte tabela
+(utilize shape para verificar a estrutura de cada parâmetro do modelo).
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{tabulate} \PY{k+kn}{import} \PY{n}{tabulate}
+
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+
+\PY{n}{w\PYZus{}fc1} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fc1}\PY{o}{.}\PY{n}{weight}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}
+\PY{n}{b\PYZus{}fc1} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fc1}\PY{o}{.}\PY{n}{bias}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}
+\PY{n}{w\PYZus{}fc2} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fc2}\PY{o}{.}\PY{n}{weight}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}
+\PY{n}{b\PYZus{}fc2} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fc2}\PY{o}{.}\PY{n}{bias}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Model Parameters:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FC1 weights dimensions: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n}{w\PYZus{}fc1}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FC2 weights dimensions: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{list} \PY{p}{(}\PY{n}{w\PYZus{}fc2}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FC1 bias dimensions: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n}{b\PYZus{}fc1}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{FC2 bias dimensions: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{list} \PY{p}{(}\PY{n}{b\PYZus{}fc2}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Table data}
+\PY{n}{data} \PY{o}{=} \PY{p}{[}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bias}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{weight}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bias}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{w\PYZus{}fc1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{w\PYZus{}fc1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{b\PYZus{}fc1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{w\PYZus{}fc2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{w\PYZus{}fc2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{b\PYZus{}fc2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Headers}
+\PY{n}{headers} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{layer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fc1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fc2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Print the table}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tabulate}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{headers}\PY{o}{=}\PY{n}{headers}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Model Parameters:
+FC1 weights dimensions:  [200, 20001]
+FC2 weights dimensions:  [1, 200]
+FC1 bias dimensions:  [200]
+FC2 bias dimensions:  [1]
+
+layer    fc1            fc2           total
+-------  -------  ----  ------  ----  -------
+         weight   bias  weight  bias
+size     4000200  200   200     1
+    \end{Verbatim}
+
+    \paragraph{Seção V}\label{seuxe7uxe3o-v}
+
+\subparagraph{V.1.a) Qual é o valor teórico da Loss quando o modelo não
+está treinado, mas apenas inicializado? Isto é, a probabilidade predita
+tanto para a classe 0 como para a classe 1, é sempre 0,5 ? Justifique.
+Atenção: na equação da Entropia Cruzada utilize o logaritmo
+natural.}\label{v.1.a-qual-uxe9-o-valor-teuxf3rico-da-loss-quando-o-modelo-nuxe3o-estuxe1-treinado-mas-apenas-inicializado-isto-uxe9-a-probabilidade-predita-tanto-para-a-classe-0-como-para-a-classe-1-uxe9-sempre-05-justifique.-atenuxe7uxe3o-na-equauxe7uxe3o-da-entropia-cruzada-utilize-o-logaritmo-natural.}\mbox{} \\
+
+Utilizando a equação da entropia cruzada, podemos obter o valor teórico
+da perda:
+
+Loss = -1/n SumN (yi * ln(y\^{}i) + (1-yi)ln(1-y\^{}i))
+
+com y\^{}i = 0.5, temos: ln(y\^{}i) = ln(1-y\^{}i) = ln(0.5) = -0.69314
+
+Loss = -1/n SumN(yi * (-0.69314) + (1-yi) * (-0.69314)) Loss = -1/n
+SumN(-0.69314yi - 0.69314 + 0.69314yi)
+
+cancelando ambos termos em yi -\textgreater{}
+
+Loss = -1/n SumN(-0.69314) e portanto Loss = 0.69314 para o modelo
+inicializado independente do número de amostras N.
+
+No entanto, para um modelo não inicializado, o valor da perda depende do
+valor dos pesos da rede neural não inicializada, que pode variar e não
+ser o mesmo que o valor teórico.
+
+    \subparagraph{V.1.b) Utilize as amostras do primeiro batch:
+(input,target) = next(iter(train\_loader)) e calcule o valor da Loss
+utilizando a equação fornecida anteriormente utilizando o pytorch.
+Verifique se este valor confere com o valor teórico do exercício
+anterior.}\label{v.1.b-utilize-as-amostras-do-primeiro-batch-inputtarget-nextitertrain_loader-e-calcule-o-valor-da-loss-utilizando-a-equauxe7uxe3o-fornecida-anteriormente-utilizando-o-pytorch.-verifique-se-este-valor-confere-com-o-valor-teuxf3rico-do-exercuxedcio-anterior.}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{new\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{128}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+\PY{n+nb}{input}\PY{p}{,} \PY{n}{target} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{(}\PY{n}{new\PYZus{}loader}\PY{p}{)}\PY{p}{)}
+\PY{n}{logit} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+\PY{n}{prob} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{sigmoid}\PY{p}{(}\PY{n}{logit}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Calculo numérico da perda}
+\PY{n}{loss} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{torch}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{mul}\PY{p}{(}\PY{n}{target}\PY{p}{,} \PY{n}{torch}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{prob}\PY{p}{)}\PY{o}{.}\PY{n}{t}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{torch}\PY{o}{.}\PY{n}{mul}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{target}\PY{p}{,} \PY{n}{torch}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{prob}\PY{p}{)}\PY{o}{.}\PY{n}{t}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{prob}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.6917, device='cuda:0', grad\_fn=<DivBackward0>)
+    \end{Verbatim}
+
+    Notamos que para um batch acima o valor da perda calculada não é a mesma
+da perda teórica, mas é muito próxima devido aos valores dos pesos não
+inicializados da rede neural.
+
+    \subparagraph{V.1.c) O pytorch possui várias funções que facilitam o
+cálculo da Loss pela Entropia Cruzada. Utilize a classe nn.BCELoss
+(Binary Cross Entropy Loss). Você primeiro deve instanciar uma função da
+classe nn.BCELoss. Esta função instanciada recebe dois parâmetros (probs
+, targets) e retorna a Loss. Use a busca do Google para ver a
+documentação do BCELoss do pytorch. Calcule então a função de Loss da
+entropia cruzada, porém usando agora a função instanciada pelo BCELoss e
+confira se o resultado é exatamente o mesmo obtido no exercício
+anterior.}\label{v.1.c-o-pytorch-possui-vuxe1rias-funuxe7uxf5es-que-facilitam-o-cuxe1lculo-da-loss-pela-entropia-cruzada.-utilize-a-classe-nn.bceloss-binary-cross-entropy-loss.-vocuxea-primeiro-deve-instanciar-uma-funuxe7uxe3o-da-classe-nn.bceloss.-esta-funuxe7uxe3o-instanciada-recebe-dois-paruxe2metros-probs-targets-e-retorna-a-loss.-use-a-busca-do-google-para-ver-a-documentauxe7uxe3o-do-bceloss-do-pytorch.-calcule-entuxe3o-a-funuxe7uxe3o-de-loss-da-entropia-cruzada-poruxe9m-usando-agora-a-funuxe7uxe3o-instanciada-pelo-bceloss-e-confira-se-o-resultado-uxe9-exatamente-o-mesmo-obtido-no-exercuxedcio-anterior.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{loss\PYZus{}fn} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{BCELoss}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{loss} \PY{o}{=} \PY{n}{loss\PYZus{}fn}\PY{p}{(}\PY{n}{prob}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{target}\PY{o}{.}\PY{n}{float}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.6917, device='cuda:0', grad\_fn=<BinaryCrossEntropyBackward0>)
+    \end{Verbatim}
+
+    Notamos que o valor foi o mesmo que o obtido acima.
+
+    \subparagraph{V.1.d) Repita o mesmo exercício, porém agora usando a
+classe nn.BCEWithLogitsLoss, que é a opção utilizada no notebook. O
+resultado da Loss deve igualar aos resultados
+anteriores.}\label{v.1.d-repita-o-mesmo-exercuxedcio-poruxe9m-agora-usando-a-classe-nn.bcewithlogitsloss-que-uxe9-a-opuxe7uxe3o-utilizada-no-notebook.-o-resultado-da-loss-deve-igualar-aos-resultados-anteriores.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{loss\PYZus{}fn} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{BCEWithLogitsLoss}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{loss} \PY{o}{=} \PY{n}{loss\PYZus{}fn}\PY{p}{(}\PY{n}{logit}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{target}\PY{o}{.}\PY{n}{float}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.6917, device='cuda:0',
+       grad\_fn=<BinaryCrossEntropyWithLogitsBackward0>)
+    \end{Verbatim}
+
+    Novamente chegamos ao mesmo valor calculado.
+
+    \subparagraph{V.2.a) Modifique a célula do laço de treinamento de modo
+que a primeira Loss a ser impressa seja a Loss com o modelo inicializado
+(isto é, sem nenhum treinamento), fornecendo a Loss esperada conforme os
+exercícios feitos anteriormente. Observe que desta forma, fica fácil
+verificar se o seu modelo está correto e a Loss está sendo calculada
+corretamente. Atenção: Mantenha esse código da impressão do valor da
+Loss inicial, antes do treinamento, nesta célula, pois ela é sempre útil
+para verificar se não tem nada errado, antes de começar o
+treinamento.}\label{v.2.a-modifique-a-cuxe9lula-do-lauxe7o-de-treinamento-de-modo-que-a-primeira-loss-a-ser-impressa-seja-a-loss-com-o-modelo-inicializado-isto-uxe9-sem-nenhum-treinamento-fornecendo-a-loss-esperada-conforme-os-exercuxedcios-feitos-anteriormente.-observe-que-desta-forma-fica-fuxe1cil-verificar-se-o-seu-modelo-estuxe1-correto-e-a-loss-estuxe1-sendo-calculada-corretamente.-atenuxe7uxe3o-mantenha-esse-cuxf3digo-da-impressuxe3o-do-valor-da-loss-inicial-antes-do-treinamento-nesta-cuxe9lula-pois-ela-uxe9-sempre-uxfatil-para-verificar-se-nuxe3o-tem-nada-errado-antes-de-comeuxe7ar-o-treinamento.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Medição da perda}
+\PY{k}{def} \PY{n+nf}{train\PYZus{}first\PYZus{}loss}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{lr}\PY{p}{)}\PY{p}{:}
+
+  \PY{n}{model} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{} Define loss and optimizer}
+  \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{BCEWithLogitsLoss}\PY{p}{(}\PY{p}{)}
+
+  \PY{n}{optimizer} \PY{o}{=} \PY{n}{optim}\PY{o}{.}\PY{n}{SGD}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+
+  \PY{c+c1}{\PYZsh{} Training loop}
+  \PY{n}{num\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{5}
+  \PY{c+c1}{\PYZsh{} First loss calculation}
+  \PY{n}{is\PYZus{}first\PYZus{}loss} \PY{o}{=} \PY{k+kc}{True}
+
+  \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+      \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+      \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{p}{)}
+
+      \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{train\PYZus{}loader}\PY{p}{:}
+
+          \PY{k}{if} \PY{o+ow}{not} \PY{n}{preload\PYZus{}to\PYZus{}gpu}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Forward pass}
+          \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{outputs}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{o}{.}\PY{n}{float}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+
+          \PY{k}{if} \PY{n}{is\PYZus{}first\PYZus{}loss}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loss before training: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{is\PYZus{}first\PYZus{}loss} \PY{o}{=} \PY{k+kc}{False}
+            \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Backward and optimize}
+          \PY{n}{backward\PYZus{}start} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+          \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{p}{)}
+
+      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch [}\PY{l+s+si}{\PYZob{}}\PY{n}{epoch}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{/}\PY{l+s+si}{\PYZob{}}\PY{n}{num\PYZus{}epochs}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{], }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{              Loss: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}first\PYZus{}loss}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loss before training: 0.6928
+
+Epoch [1/5],               Loss: 0.4690
+Epoch [2/5],               Loss: 0.3171
+Epoch [3/5],               Loss: 0.3201
+Epoch [4/5],               Loss: 0.3079
+Epoch [5/5],               Loss: 0.3412
+
+    \end{Verbatim}
+
+    Notamos que o primeiro valor calculado da perda se manteve o mesmo.
+
+    \subparagraph{V.2.b) Execute a célula de treinamento por uma segunda vez
+e observe que a Loss continua diminuindo e o modelo está continuando a
+ser treinado. O que é necessário fazer para que o treinamento comece
+novamente do modelo aleatório? Qual(is) célula(s) é(são) preciso
+executar antes de executar o laço de treinamento
+novamente?}\label{v.2.b-execute-a-cuxe9lula-de-treinamento-por-uma-segunda-vez-e-observe-que-a-loss-continua-diminuindo-e-o-modelo-estuxe1-continuando-a-ser-treinado.-o-que-uxe9-necessuxe1rio-fazer-para-que-o-treinamento-comece-novamente-do-modelo-aleatuxf3rio-qualis-cuxe9lulas-uxe9suxe3o-preciso-executar-antes-de-executar-o-lauxe7o-de-treinamento-novamente}\mbox{} \\
+
+Para que o treinamento inicie novamente, os pesos devem ser resetados a
+seus valores iniciais. Uma maneira de fazer isso é criando uma função
+que resete os parãmetros de cada camada, por exemplo:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{reset\PYZus{}weights}\PY{p}{(}\PY{n}{model}\PY{p}{)}\PY{p}{:}
+  \PY{k}{for} \PY{n}{module} \PY{o+ow}{in} \PY{n}{model}\PY{o}{.}\PY{n}{modules}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n+nb}{isinstance}\PY{p}{(}\PY{n}{module}\PY{p}{,} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{)}\PY{p}{:}
+      \PY{n}{module}\PY{o}{.}\PY{n}{reset\PYZus{}parameters}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    E adicionar ao loop de treinamento acima.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Medição da perda}
+\PY{k}{def} \PY{n+nf}{train\PYZus{}first\PYZus{}loss\PYZus{}reset}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{lr}\PY{p}{)}\PY{p}{:}
+
+  \PY{n}{model} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+  \PY{n}{reset\PYZus{}weights}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{} Define loss and optimizer}
+  \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{BCEWithLogitsLoss}\PY{p}{(}\PY{p}{)}
+
+  \PY{n}{optimizer} \PY{o}{=} \PY{n}{optim}\PY{o}{.}\PY{n}{SGD}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+
+  \PY{c+c1}{\PYZsh{} Training loop}
+  \PY{n}{num\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{5}
+  \PY{c+c1}{\PYZsh{} First loss calculation}
+  \PY{n}{is\PYZus{}first\PYZus{}loss} \PY{o}{=} \PY{k+kc}{True}
+
+  \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+      \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+      \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{p}{)}
+
+      \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{train\PYZus{}loader}\PY{p}{:}
+
+          \PY{k}{if} \PY{o+ow}{not} \PY{n}{preload\PYZus{}to\PYZus{}gpu}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Forward pass}
+          \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{outputs}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{o}{.}\PY{n}{float}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+
+          \PY{k}{if} \PY{n}{is\PYZus{}first\PYZus{}loss}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loss before training: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{is\PYZus{}first\PYZus{}loss} \PY{o}{=} \PY{k+kc}{False}
+            \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Backward and optimize}
+          \PY{n}{backward\PYZus{}start} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+          \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{p}{)}
+
+      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch [}\PY{l+s+si}{\PYZob{}}\PY{n}{epoch}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{/}\PY{l+s+si}{\PYZob{}}\PY{n}{num\PYZus{}epochs}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{], }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{              Loss: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Sem o reset de parâmetros:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}first\PYZus{}loss}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\PY{n}{train\PYZus{}first\PYZus{}loss}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loss before training: 0.6927
+
+Epoch [1/5],               Loss: 0.4922
+Epoch [2/5],               Loss: 0.3288
+Epoch [3/5],               Loss: 0.3500
+Epoch [4/5],               Loss: 0.2923
+Epoch [5/5],               Loss: 0.3409
+
+Loss before training: 0.2243
+
+Epoch [1/5],               Loss: 0.3253
+Epoch [2/5],               Loss: 0.2242
+Epoch [3/5],               Loss: 0.2936
+Epoch [4/5],               Loss: 0.2388
+Epoch [5/5],               Loss: 0.1457
+
+    \end{Verbatim}
+
+    Com reset de parâmetros:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}first\PYZus{}loss\PYZus{}reset}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\PY{n}{train\PYZus{}first\PYZus{}loss\PYZus{}reset}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loss before training: 0.6957
+
+Epoch [1/5],               Loss: 0.4929
+Epoch [2/5],               Loss: 0.3588
+Epoch [3/5],               Loss: 0.2829
+Epoch [4/5],               Loss: 0.2523
+Epoch [5/5],               Loss: 0.2483
+
+Loss before training: 0.6972
+
+Epoch [1/5],               Loss: 0.4644
+Epoch [2/5],               Loss: 0.3141
+Epoch [3/5],               Loss: 0.3423
+Epoch [4/5],               Loss: 0.3514
+Epoch [5/5],               Loss: 0.3239
+
+    \end{Verbatim}
+
+    \subparagraph{V.3.a) Repita o exercício V.1.a) porém agora utilizando a
+equação
+acima.}\label{v.3.a-repita-o-exercuxedcio-v.1.a-poruxe9m-agora-utilizando-a-equauxe7uxe3o-acima.}\mbox{} \\
+
+C - número de classes\\
+N - número de amostras no batch
+
+H(y,y\^{}) = -(1/N) sumN (sumC yij*log(yi,c))
+
+Neste caso, temos 2 classes (positiva e negativa, e portanto y\^{}ij =
+50\%)
+
+daí log(y\^{}ij) = log(0.5) = -0.69314.
+
+Com duas classes:
+
+sumC(yij\emph{log(y\^{}i,c)) = 2}(yij\emph{(-0.69314)) = -1.38628}yij
+
+H(y,y) = -1/(N)* sumC(-1.38628*yij)
+
+Se temos duas classes, podemos assumir que metade são da classe 0 e
+metade da classe 1, e portanto
+
+sumC(yij) = N/2*(-1.38628)
+
+daí a perda seria dada por
+
+H(y,y\^{}) = -1/(N)\emph{(N/2)}(-1.28628) = 1.38628/2 = 0.69314
+
+    \subparagraph{V.3.b) Modifique a camada de saída da rede para 2 logitos
+e utilize a função Softmax para converter os logitos em probabilidades.
+Repita o exercício
+V.1.b)}\label{v.3.b-modifique-a-camada-de-sauxedda-da-rede-para-2-logitos-e-utilize-a-funuxe7uxe3o-softmax-para-converter-os-logitos-em-probabilidades.-repita-o-exercuxedcio-v.1.b}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{class} \PY{n+nc}{OneHotMLP\PYZus{}2logits}\PY{p}{(}\PY{n}{nn}\PY{o}{.}\PY{n}{Module}\PY{p}{)}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{vocab\PYZus{}size}\PY{p}{)}\PY{p}{:}
+        \PY{n+nb}{super}\PY{p}{(}\PY{n}{OneHotMLP\PYZus{}2logits}\PY{p}{,} \PY{n+nb+bp}{self}\PY{p}{)}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc1} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc2} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relu} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{ReLU}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{softmax} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Softmax}\PY{p}{(}\PY{n}{dim}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+
+    \PY{k}{def} \PY{n+nf}{forward}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+        \PY{n}{o} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc1}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{float}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{o} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n}{o}\PY{p}{)}
+        \PY{n}{o} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc2}\PY{p}{(}\PY{n}{o}\PY{p}{)}
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{softmax}\PY{p}{(}\PY{n}{o}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{torch}\PY{n+nn}{.}\PY{n+nn}{nn}\PY{n+nn}{.}\PY{n+nn}{functional} \PY{k}{as} \PY{n+nn}{F}
+
+\PY{n}{new\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{128}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP\PYZus{}2logits}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+\PY{n+nb}{input}\PY{p}{,} \PY{n}{target} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{(}\PY{n}{new\PYZus{}loader}\PY{p}{)}\PY{p}{)}
+\PY{n}{probs\PYZus{}2logits} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Calculo numérico da perda}
+\PY{n}{log\PYZus{}probs} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{log\PYZus{}softmax}\PY{p}{(}\PY{n}{probs\PYZus{}2logits}\PY{p}{,} \PY{n}{dim}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{log\PYZus{}probs\PYZus{}correct\PYZus{}class} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{gather}\PY{p}{(}\PY{n}{log\PYZus{}probs}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{target}\PY{o}{.}\PY{n}{unsqueeze}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{loss} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log\PYZus{}probs\PYZus{}correct\PYZus{}class}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.6941, device='cuda:0', grad\_fn=<NegBackward0>)
+    \end{Verbatim}
+
+    \subparagraph{V.3.c) Utilize agora a função nn.CrossEntropyLoss para
+calcular a Loss e verifique se os resultados são os mesmos que
+anteriormente.}\label{v.3.c-utilize-agora-a-funuxe7uxe3o-nn.crossentropyloss-para-calcular-a-loss-e-verifique-se-os-resultados-suxe3o-os-mesmos-que-anteriormente.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{loss\PYZus{}fn} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{CrossEntropyLoss}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{loss} \PY{o}{=} \PY{n}{loss\PYZus{}fn}\PY{p}{(}\PY{n}{probs\PYZus{}2logits}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{target}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.6941, device='cuda:0', grad\_fn=<NllLossBackward0>)
+    \end{Verbatim}
+
+    Notamos que o valor foi o mesmo que o obtido acima.
+
+    \subparagraph{V.3.d) Modifique as seções V e VI para que o notebook
+funcione com a saída da rede com 2 logitos. Há necessidade de alterar o
+laço de treinamento e o laço de cálculo da
+acurácia.}\label{v.3.d-modifique-as-seuxe7uxf5es-v-e-vi-para-que-o-notebook-funcione-com-a-sauxedda-da-rede-com-2-logitos.-huxe1-necessidade-de-alterar-o-lauxe7o-de-treinamento-e-o-lauxe7o-de-cuxe1lculo-da-acuruxe1cia.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Treinamento e inferência multi\PYZhy{}classe}
+
+\PY{k}{def} \PY{n+nf}{train\PYZus{}two\PYZus{}logits}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{lr}\PY{p}{)}\PY{p}{:}
+
+  \PY{n}{model} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+  \PY{n}{reset\PYZus{}weights}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{} Define loss and optimizer}
+  \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{CrossEntropyLoss}\PY{p}{(}\PY{p}{)}
+
+  \PY{n}{optimizer} \PY{o}{=} \PY{n}{optim}\PY{o}{.}\PY{n}{SGD}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+
+  \PY{c+c1}{\PYZsh{} Training loop}
+  \PY{n}{num\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{5}
+
+  \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+
+      \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{p}{)}
+
+      \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{train\PYZus{}loader}\PY{p}{:}
+
+          \PY{k}{if} \PY{o+ow}{not} \PY{n}{preload\PYZus{}to\PYZus{}gpu}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Forward pass}
+          \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{outputs}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Backward and optimize}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+          \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{p}{)}
+
+      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch [}\PY{l+s+si}{\PYZob{}}\PY{n}{epoch}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{/}\PY{l+s+si}{\PYZob{}}\PY{n}{num\PYZus{}epochs}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{], }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{              Loss: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{eval\PYZus{}two\PYZus{}logits}\PY{p}{(}\PY{n}{model}\PY{p}{)}\PY{p}{:}
+    \PY{n}{model}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}
+
+    \PY{k}{with} \PY{n}{torch}\PY{o}{.}\PY{n}{no\PYZus{}grad}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{n}{correct} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{test\PYZus{}loader}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+            \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{predicted} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{outputs}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{total} \PY{o}{+}\PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{correct} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{predicted} \PY{o}{==} \PY{n}{labels}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}
+
+        \PY{n}{acc} \PY{o}{=} \PY{l+m+mi}{100}\PY{o}{*} \PY{n}{correct}\PY{o}{/}\PY{n}{total}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy: }\PY{l+s+si}{\PYZob{}}\PY{n}{acc}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{return} \PY{n}{acc}
+
+
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP\PYZus{}2logits}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}two\PYZus{}logits}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{)}
+\PY{n}{eval\PYZus{}two\PYZus{}logits}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Epoch [1/5],               Loss: 0.5940
+Epoch [2/5],               Loss: 0.5067
+Epoch [3/5],               Loss: 0.4641
+Epoch [4/5],               Loss: 0.4820
+Epoch [5/5],               Loss: 0.4484
+
+Test Accuracy: 86.74\%
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+86.74
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \paragraph{Seção VI}\label{seuxe7uxe3o-vi}
+
+\subparagraph{VI.1.a) Calcule o número de amostras que está sendo
+considerado na seção de
+avaliação.}\label{vi.1.a-calcule-o-nuxfamero-de-amostras-que-estuxe1-sendo-considerado-na-seuxe7uxe3o-de-avaliauxe7uxe3o.}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+25000
+    \end{Verbatim}
+
+    \subparagraph{VI.1.b) Explique o que faz os comandos model.eval()e with
+torch.no\_grad().}\label{vi.1.b-explique-o-que-faz-os-comandos-model.evale-with-torch.no_grad.}\mbox{} \\
+
+O comando model.eval() informa para o Pytorch que estamos em modo de
+inferência, o que faz com que algumas camadas dos modelos (como camadas
+de dropout) sejam desabilitadas.
+
+O loop \textbf{with torch.no\_grad()} informa o Pytorch para não
+calcular gradientes relacionados a um tensor. Assim, loops onde o
+gradiente precisa ser preservado utilizam essa configuração.
+
+    \subparagraph{VI.1.c) Existe uma forma mais simples de calcular a classe
+predita na linha 11, sem a necessidade de usar a função
+torch.sigmoid?}\label{vi.1.c-existe-uma-forma-mais-simples-de-calcular-a-classe-predita-na-linha-11-sem-a-necessidade-de-usar-a-funuxe7uxe3o-torch.sigmoid}
+
+Torch.sigmoid() é uma função de ativação, para transformar uma entrada
+numérica em um número entre zero e um. Uma maneira muito simples de
+fazer a mesma coisa é dividir a entrada pelo valor máximo da entrada
+observada, além de, claro, utilizar outras funções de ativação
+alternativas (ReLU, etc).
+
+    \subparagraph{VI.2.a) Utilizando a resposta do exercício V.1.a, que é a
+Loss teórica de um modelo aleatório de 2 classes, qual é o valor da
+perplexidade?}\label{vi.2.a-utilizando-a-resposta-do-exercuxedcio-v.1.a-que-uxe9-a-loss-teuxf3rica-de-um-modelo-aleatuxf3rio-de-2-classes-qual-uxe9-o-valor-da-perplexidade}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{36}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{torch}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{tensor}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.69314}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{36}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+tensor(0.5000)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    A perplexidade neste caso nos retorna a probabilidade de distribuição
+das classes de 50\%.
+
+    \subparagraph{VI.2.b) E se o modelo agora fosse para classificar a
+amostra em N classes, qual seria o valor da perplexidade para o caso
+aleatório?}\label{vi.2.b-e-se-o-modelo-agora-fosse-para-classificar-a-amostra-em-n-classes-qual-seria-o-valor-da-perplexidade-para-o-caso-aleatuxf3rio}\mbox{} \\
+
+Para N classes, a perplexidade seria dada por 1/N.
+
+\subparagraph{VI.2.c) Qual é o valor da perplexidade quando o modelo
+acerta todas as classes com 100\% de
+probabilidade?}\label{vi.2.c-qual-uxe9-o-valor-da-perplexidade-quando-o-modelo-acerta-todas-as-classes-com-100-de-probabilidade}\mbox{} \\
+
+Quando um modelo acerta 100\% das previsões, a perplexidade é 1.
+
+    \subparagraph{VI.3.a) Modifique o código da seção VI - Avaliação, para
+que além de calcular a acurácia, calcule também a perplexidade. lembrar
+que PPL = torch.exp(CE). Assim, será necessário calcular a entropia
+cruzada, como feito no laço de
+treinamento.}\label{vi.3.a-modifique-o-cuxf3digo-da-seuxe7uxe3o-vi---avaliauxe7uxe3o-para-que-aluxe9m-de-calcular-a-acuruxe1cia-calcule-tambuxe9m-a-perplexidade.-lembrar-que-ppl-torch.expce.-assim-seruxe1-necessuxe1rio-calcular-a-entropia-cruzada-como-feito-no-lauxe7o-de-treinamento.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{eval\PYZus{}with\PYZus{}perplexity}\PY{p}{(}\PY{n}{model}\PY{p}{)}\PY{p}{:}
+    \PY{n}{model}\PY{o}{.}\PY{n}{eval}\PY{p}{(}\PY{p}{)}
+
+    \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{CrossEntropyLoss}\PY{p}{(}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{}total\PYZus{}loss = 0}
+    \PY{c+c1}{\PYZsh{}total\PYZus{}labels = 0}
+    \PY{n}{perplexity} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{k}{with} \PY{n}{torch}\PY{o}{.}\PY{n}{no\PYZus{}grad}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{n}{correct} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{test\PYZus{}loader}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+
+            \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{outputs}\PY{p}{,} \PY{n}{labels}\PY{p}{)}
+            \PY{n}{perplexity} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+
+            \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{predicted} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{outputs}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{total} \PY{o}{+}\PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{correct} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{predicted} \PY{o}{==} \PY{n}{labels}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}
+
+        \PY{n}{acc} \PY{o}{=} \PY{l+m+mi}{100}\PY{o}{*} \PY{n}{correct}\PY{o}{/}\PY{n}{total}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Accuracy: }\PY{l+s+si}{\PYZob{}}\PY{n}{acc}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZpc{} }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{                Test Perplexity: }\PY{l+s+si}{\PYZob{}}\PY{n}{perplexity}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{return} \PY{n}{acc}
+
+\PY{n}{eval\PYZus{}with\PYZus{}perplexity}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Test Accuracy: 86.74\%                 Test Perplexity: 1.5994813442230225
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+86.74
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \subparagraph{VI.4.a) Modifique o laço de treinamento para incorporar
+também o cálculo da avaliação ao final de cada época. Aproveite para
+reportar também a perplexidade, tanto do treinamento como da avaliação
+(observe que será mais fácil de interpretar). Essa é a forma usual de se
+fazer o treinamento, monitorando se o modelo não entra em
+overfitting.}\label{vi.4.a-modifique-o-lauxe7o-de-treinamento-para-incorporar-tambuxe9m-o-cuxe1lculo-da-avaliauxe7uxe3o-ao-final-de-cada-uxe9poca.-aproveite-para-reportar-tambuxe9m-a-perplexidade-tanto-do-treinamento-como-da-avaliauxe7uxe3o-observe-que-seruxe1-mais-fuxe1cil-de-interpretar.-essa-uxe9-a-forma-usual-de-se-fazer-o-treinamento-monitorando-se-o-modelo-nuxe3o-entra-em-overfitting.}\mbox{} \\
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{38}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{train\PYZus{}and\PYZus{}eval}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{lr}\PY{p}{,} \PY{n}{epochs}\PY{p}{)}\PY{p}{:}
+
+  \PY{n}{model} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+  \PY{n}{reset\PYZus{}weights}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+  \PY{c+c1}{\PYZsh{} Define loss and optimizer}
+  \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{CrossEntropyLoss}\PY{p}{(}\PY{p}{)}
+
+  \PY{n}{optimizer} \PY{o}{=} \PY{n}{optim}\PY{o}{.}\PY{n}{SGD}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lr}\PY{p}{)}
+
+  \PY{n}{perplexity} \PY{o}{=} \PY{l+m+mi}{0}
+  \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{epochs}\PY{p}{)}\PY{p}{:}
+
+      \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{p}{)}
+
+      \PY{k}{for} \PY{n}{inputs}\PY{p}{,} \PY{n}{labels} \PY{o+ow}{in} \PY{n}{train\PYZus{}loader}\PY{p}{:}
+
+          \PY{k}{if} \PY{o+ow}{not} \PY{n}{preload\PYZus{}to\PYZus{}gpu}\PY{p}{:}
+            \PY{n}{inputs} \PY{o}{=} \PY{n}{inputs}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+            \PY{n}{labels} \PY{o}{=} \PY{n}{labels}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Forward pass}
+          \PY{n}{outputs} \PY{o}{=} \PY{n}{model}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}
+          \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{outputs}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{labels}\PY{p}{)}
+          \PY{n}{perplexity} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+
+          \PY{c+c1}{\PYZsh{} Backward and optimize}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+          \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+          \PY{n}{optimizer}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{p}{)}
+
+      \PY{n}{eval\PYZus{}with\PYZus{}perplexity}\PY{p}{(}\PY{n}{model}\PY{p}{)}
+      \PY{n}{model}\PY{o}{.}\PY{n}{train}\PY{p}{(}\PY{p}{)}
+
+      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Epoch [}\PY{l+s+si}{\PYZob{}}\PY{n}{epoch}\PY{o}{+}\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{/}\PY{l+s+si}{\PYZob{}}\PY{n}{epochs}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{], }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{              Loss: }\PY{l+s+si}{\PYZob{}}\PY{n}{loss}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+se}{\PYZbs{}}
+\PY{l+s+s1}{              Train Perplexity: }\PY{l+s+si}{\PYZob{}}\PY{n}{perplexity}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+  \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP\PYZus{}2logits}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}and\PYZus{}eval}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Test Accuracy: 79.372\%                 Test Perplexity: 1.8890479803085327
+Epoch [1/5],               Loss: 0.6000,               Train Perplexity:
+1.822061538696289
+Test Accuracy: 83.416\%                 Test Perplexity: 1.7140659093856812
+Epoch [2/5],               Loss: 0.5073,               Train Perplexity:
+1.6608058214187622
+Test Accuracy: 85.052\%                 Test Perplexity: 1.6764986515045166
+Epoch [3/5],               Loss: 0.4443,               Train Perplexity:
+1.559381365776062
+Test Accuracy: 86.024\%                 Test Perplexity: 1.583828091621399
+Epoch [4/5],               Loss: 0.4751,               Train Perplexity:
+1.6081184148788452
+Test Accuracy: 86.616\%                 Test Perplexity: 1.6186288595199585
+Epoch [5/5],               Loss: 0.4688,               Train Perplexity:
+1.5980067253112793
+
+    \end{Verbatim}
+
+    \subparagraph{Por fim, como o dataset tem muitas amostras, ele é
+demorado de entrar em overfitting. Para ficar mais evidente, diminua
+novamente o número de amostras do dataset de treino de 25 mil para 1 mil
+amostras e aumente o número de épocas para ilustrar o caso do
+overfitting, em que a perplexidade de treinamento continua caindo, porém
+a perplexidade no conjunto de teste começa a
+aumentar.}\label{por-fim-como-o-dataset-tem-muitas-amostras-ele-uxe9-demorado-de-entrar-em-overfitting.-para-ficar-mais-evidente-diminua-novamente-o-nuxfamero-de-amostras-do-dataset-de-treino-de-25-mil-para-1-mil-amostras-e-aumente-o-nuxfamero-de-uxe9pocas-para-ilustrar-o-caso-do-overfitting-em-que-a-perplexidade-de-treinamento-continua-caindo-poruxe9m-a-perplexidade-no-conjunto-de-teste-comeuxe7a-a-aumentar.}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{batch\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{128}
+
+\PY{n}{train\PYZus{}data\PYZus{}short} \PY{o}{=} \PY{n}{IMDBDataset}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{train}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{vocab}\PY{p}{,} \PY{n}{samples} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
+\PY{n}{test\PYZus{}data\PYZus{}short} \PY{o}{=} \PY{n}{IMDBDataset}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{vocab}\PY{p}{,} \PY{n}{samples} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}
+
+\PY{n}{train\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{train\PYZus{}data\PYZus{}short}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{n}{train\PYZus{}shuffle}\PY{p}{)}
+\PY{n}{test\PYZus{}loader} \PY{o}{=} \PY{n}{DataLoader}\PY{p}{(}\PY{n}{test\PYZus{}data\PYZus{}short}\PY{p}{,} \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{n}{batch\PYZus{}size}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+
+\PY{n}{model} \PY{o}{=} \PY{n}{OneHotMLP\PYZus{}2logits}\PY{p}{(}\PY{n}{vocab\PYZus{}size}\PY{p}{)}
+\PY{n}{train\PYZus{}and\PYZus{}eval}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{best\PYZus{}LR}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Test Accuracy: 100.0\%                 Test Perplexity: 1.4652374982833862
+Epoch [1/100],               Loss: 0.3981,               Train Perplexity:
+1.4890598058700562
+Test Accuracy: 100.0\%                 Test Perplexity: 1.402090311050415
+Epoch [2/100],               Loss: 0.3379,               Train Perplexity:
+1.4019744396209717
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3873093128204346
+Epoch [3/100],               Loss: 0.3279,               Train Perplexity:
+1.3881028890609741
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3811591863632202
+Epoch [4/100],               Loss: 0.3222,               Train Perplexity:
+1.3801277875900269
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3778650760650635
+Epoch [5/100],               Loss: 0.3193,               Train Perplexity:
+1.376153588294983
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3758258819580078
+Epoch [6/100],               Loss: 0.3194,               Train Perplexity:
+1.376289963722229
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3744561672210693
+Epoch [7/100],               Loss: 0.3184,               Train Perplexity:
+1.3749326467514038
+Test Accuracy: 100.0\%                 Test Perplexity: 1.373476505279541
+Epoch [8/100],               Loss: 0.3167,               Train Perplexity:
+1.3725703954696655
+Test Accuracy: 100.0\%                 Test Perplexity: 1.372735619544983
+Epoch [9/100],               Loss: 0.3178,               Train Perplexity:
+1.374079704284668
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3721671104431152
+Epoch [10/100],               Loss: 0.3151,               Train Perplexity:
+1.370390772819519
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3717094659805298
+Epoch [11/100],               Loss: 0.3163,               Train Perplexity:
+1.3721094131469727
+Test Accuracy: 100.0\%                 Test Perplexity: 1.371337890625
+Epoch [12/100],               Loss: 0.3155,               Train Perplexity:
+1.37095308303833
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3710299730300903
+Epoch [13/100],               Loss: 0.3152,               Train Perplexity:
+1.3705111742019653
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3707679510116577
+Epoch [14/100],               Loss: 0.3165,               Train Perplexity:
+1.372287631034851
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3705463409423828
+Epoch [15/100],               Loss: 0.3147,               Train Perplexity:
+1.3699136972427368
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3703547716140747
+Epoch [16/100],               Loss: 0.3148,               Train Perplexity:
+1.3700511455535889
+Test Accuracy: 100.0\%                 Test Perplexity: 1.37018620967865
+Epoch [17/100],               Loss: 0.3158,               Train Perplexity:
+1.371317744255066
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3700395822525024
+Epoch [18/100],               Loss: 0.3147,               Train Perplexity:
+1.3699020147323608
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3699101209640503
+Epoch [19/100],               Loss: 0.3144,               Train Perplexity:
+1.3694963455200195
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3697941303253174
+Epoch [20/100],               Loss: 0.3145,               Train Perplexity:
+1.3696213960647583
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3696900606155396
+Epoch [21/100],               Loss: 0.3147,               Train Perplexity:
+1.3698198795318604
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3695961236953735
+Epoch [22/100],               Loss: 0.3146,               Train Perplexity:
+1.3697214126586914
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3695107698440552
+Epoch [23/100],               Loss: 0.3147,               Train Perplexity:
+1.3699082136154175
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3694332838058472
+Epoch [24/100],               Loss: 0.3147,               Train Perplexity:
+1.3698039054870605
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3693631887435913
+Epoch [25/100],               Loss: 0.3140,               Train Perplexity:
+1.368842363357544
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3692984580993652
+Epoch [26/100],               Loss: 0.3144,               Train Perplexity:
+1.3694206476211548
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3692387342453003
+Epoch [27/100],               Loss: 0.3146,               Train Perplexity:
+1.3697483539581299
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3691834211349487
+Epoch [28/100],               Loss: 0.3147,               Train Perplexity:
+1.3698594570159912
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3691322803497314
+Epoch [29/100],               Loss: 0.3146,               Train Perplexity:
+1.369748592376709
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3690849542617798
+Epoch [30/100],               Loss: 0.3146,               Train Perplexity:
+1.369724988937378
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3690409660339355
+Epoch [31/100],               Loss: 0.3139,               Train Perplexity:
+1.3687975406646729
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368999719619751
+Epoch [32/100],               Loss: 0.3142,               Train Perplexity:
+1.3691222667694092
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368961215019226
+Epoch [33/100],               Loss: 0.3141,               Train Perplexity:
+1.3689675331115723
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3689253330230713
+Epoch [34/100],               Loss: 0.3143,               Train Perplexity:
+1.3693097829818726
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368891716003418
+Epoch [35/100],               Loss: 0.3137,               Train Perplexity:
+1.368466854095459
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368859887123108
+Epoch [36/100],               Loss: 0.3139,               Train Perplexity:
+1.368798017501831
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3688302040100098
+Epoch [37/100],               Loss: 0.3138,               Train Perplexity:
+1.3685476779937744
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3688018321990967
+Epoch [38/100],               Loss: 0.3140,               Train Perplexity:
+1.3688825368881226
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3687752485275269
+Epoch [39/100],               Loss: 0.3136,               Train Perplexity:
+1.3684091567993164
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3687498569488525
+Epoch [40/100],               Loss: 0.3138,               Train Perplexity:
+1.3686186075210571
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3687258958816528
+Epoch [41/100],               Loss: 0.3139,               Train Perplexity:
+1.3687593936920166
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368703007698059
+Epoch [42/100],               Loss: 0.3142,               Train Perplexity:
+1.3691896200180054
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3686814308166504
+Epoch [43/100],               Loss: 0.3137,               Train Perplexity:
+1.3684498071670532
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3686609268188477
+Epoch [44/100],               Loss: 0.3137,               Train Perplexity:
+1.3684937953948975
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3686413764953613
+Epoch [45/100],               Loss: 0.3136,               Train Perplexity:
+1.368397831916809
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3686225414276123
+Epoch [46/100],               Loss: 0.3138,               Train Perplexity:
+1.3685566186904907
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3686045408248901
+Epoch [47/100],               Loss: 0.3143,               Train Perplexity:
+1.3692359924316406
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3685874938964844
+Epoch [48/100],               Loss: 0.3137,               Train Perplexity:
+1.368489146232605
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368571162223816
+Epoch [49/100],               Loss: 0.3139,               Train Perplexity:
+1.3687890768051147
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3685554265975952
+Epoch [50/100],               Loss: 0.3138,               Train Perplexity:
+1.3686046600341797
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3685404062271118
+Epoch [51/100],               Loss: 0.3139,               Train Perplexity:
+1.368720293045044
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3685258626937866
+Epoch [52/100],               Loss: 0.3142,               Train Perplexity:
+1.369149923324585
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3685119152069092
+Epoch [53/100],               Loss: 0.3136,               Train Perplexity:
+1.368369698524475
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368498682975769
+Epoch [54/100],               Loss: 0.3136,               Train Perplexity:
+1.3682812452316284
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684860467910767
+Epoch [55/100],               Loss: 0.3137,               Train Perplexity:
+1.368517518043518
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684738874435425
+Epoch [56/100],               Loss: 0.3135,               Train Perplexity:
+1.3682323694229126
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684619665145874
+Epoch [57/100],               Loss: 0.3137,               Train Perplexity:
+1.3685381412506104
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368450403213501
+Epoch [58/100],               Loss: 0.3142,               Train Perplexity:
+1.369145154953003
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684395551681519
+Epoch [59/100],               Loss: 0.3134,               Train Perplexity:
+1.3680731058120728
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684290647506714
+Epoch [60/100],               Loss: 0.3136,               Train Perplexity:
+1.368316411972046
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684189319610596
+Epoch [61/100],               Loss: 0.3136,               Train Perplexity:
+1.368345022201538
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3684089183807373
+Epoch [62/100],               Loss: 0.3139,               Train Perplexity:
+1.368705153465271
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683993816375732
+Epoch [63/100],               Loss: 0.3140,               Train Perplexity:
+1.3688586950302124
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683900833129883
+Epoch [64/100],               Loss: 0.3143,               Train Perplexity:
+1.3693068027496338
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368381142616272
+Epoch [65/100],               Loss: 0.3135,               Train Perplexity:
+1.368220567703247
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683725595474243
+Epoch [66/100],               Loss: 0.3136,               Train Perplexity:
+1.3683326244354248
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683642148971558
+Epoch [67/100],               Loss: 0.3135,               Train Perplexity:
+1.3681540489196777
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683559894561768
+Epoch [68/100],               Loss: 0.3139,               Train Perplexity:
+1.3686999082565308
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368348240852356
+Epoch [69/100],               Loss: 0.3135,               Train Perplexity:
+1.368147611618042
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683404922485352
+Epoch [70/100],               Loss: 0.3139,               Train Perplexity:
+1.3687909841537476
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683332204818726
+Epoch [71/100],               Loss: 0.3139,               Train Perplexity:
+1.3687148094177246
+Test Accuracy: 100.0\%                 Test Perplexity: 1.36832594871521
+Epoch [72/100],               Loss: 0.3136,               Train Perplexity:
+1.3683280944824219
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683189153671265
+Epoch [73/100],               Loss: 0.3139,               Train Perplexity:
+1.3687971830368042
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368312120437622
+Epoch [74/100],               Loss: 0.3139,               Train Perplexity:
+1.368705153465271
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3683055639266968
+Epoch [75/100],               Loss: 0.3135,               Train Perplexity:
+1.3682001829147339
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682992458343506
+Epoch [76/100],               Loss: 0.3136,               Train Perplexity:
+1.3683652877807617
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682929277420044
+Epoch [77/100],               Loss: 0.3135,               Train Perplexity:
+1.3682271242141724
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682869672775269
+Epoch [78/100],               Loss: 0.3135,               Train Perplexity:
+1.3681442737579346
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682812452316284
+Epoch [79/100],               Loss: 0.3135,               Train Perplexity:
+1.3682386875152588
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682754039764404
+Epoch [80/100],               Loss: 0.3134,               Train Perplexity:
+1.3681339025497437
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368269920349121
+Epoch [81/100],               Loss: 0.3138,               Train Perplexity:
+1.3685861825942993
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682644367218018
+Epoch [82/100],               Loss: 0.3135,               Train Perplexity:
+1.3681398630142212
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682591915130615
+Epoch [83/100],               Loss: 0.3135,               Train Perplexity:
+1.368175745010376
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682540655136108
+Epoch [84/100],               Loss: 0.3135,               Train Perplexity:
+1.368200421333313
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682489395141602
+Epoch [85/100],               Loss: 0.3137,               Train Perplexity:
+1.3684122562408447
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682440519332886
+Epoch [86/100],               Loss: 0.3140,               Train Perplexity:
+1.3688278198242188
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682392835617065
+Epoch [87/100],               Loss: 0.3135,               Train Perplexity:
+1.3682599067687988
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682345151901245
+Epoch [88/100],               Loss: 0.3135,               Train Perplexity:
+1.368152141571045
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682301044464111
+Epoch [89/100],               Loss: 0.3134,               Train Perplexity:
+1.3681014776229858
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682255744934082
+Epoch [90/100],               Loss: 0.3136,               Train Perplexity:
+1.3683029413223267
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682212829589844
+Epoch [91/100],               Loss: 0.3134,               Train Perplexity:
+1.3680342435836792
+Test Accuracy: 100.0\%                 Test Perplexity: 1.36821711063385
+Epoch [92/100],               Loss: 0.3135,               Train Perplexity:
+1.3682141304016113
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682128190994263
+Epoch [93/100],               Loss: 0.3138,               Train Perplexity:
+1.368651270866394
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368208885192871
+Epoch [94/100],               Loss: 0.3135,               Train Perplexity:
+1.3681857585906982
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682047128677368
+Epoch [95/100],               Loss: 0.3139,               Train Perplexity:
+1.3687580823898315
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3682007789611816
+Epoch [96/100],               Loss: 0.3135,               Train Perplexity:
+1.368249535560608
+Test Accuracy: 100.0\%                 Test Perplexity: 1.368196964263916
+Epoch [97/100],               Loss: 0.3138,               Train Perplexity:
+1.3686814308166504
+Test Accuracy: 100.0\%                 Test Perplexity: 1.36819326877594
+Epoch [98/100],               Loss: 0.3138,               Train Perplexity:
+1.3686493635177612
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3681894540786743
+Epoch [99/100],               Loss: 0.3136,               Train Perplexity:
+1.3683782815933228
+Test Accuracy: 100.0\%                 Test Perplexity: 1.3681858777999878
+Epoch [100/100],               Loss: 0.3142,               Train Perplexity:
+1.3692086935043335
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
