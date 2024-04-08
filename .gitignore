@@ -163,3 +163,5 @@ cython_debug/
 .vscode/settings.json
 Aula_4_5/aclImdb.tgz
 Aula_4_5/aclImdb
+Aula_4_5/model
+Aula_4_5/results
