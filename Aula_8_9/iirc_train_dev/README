@@ -1,0 +1,20 @@
+The json has a list of passages. Each passage has [title, links, questions, text].
+Overall:
+[ 
+  {
+    title,
+    links,
+    questions,  (see below for structure)
+    text        (Original passage for which the question was written)
+  },
+]
+
+questions:
+[
+  {
+    question,
+    answer,
+    question_links,  (Links labeled by question writer as relevant)
+    context          (context selected by question answerer as necessary)
+  }
+]
