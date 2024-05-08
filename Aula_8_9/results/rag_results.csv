@@ -1,0 +1,151 @@
+,question,answer,LLM answer,F1,Exact Match
+0,What is Zeus know for in Greek mythology?,sky and thunder god,being sky and thunder god in ancient greek religion,0.6153846153846153,0
+1,How long had the First World War been over when Messe was named aide-de-camp?,5,none,0.0,0
+2,"How long had Angela Scoular been acting professionally when she appeared in the movie ""On Her Majesty's Secret Service""?",2,none,0.0,0
+3,What is the capacity of the stadium where Brunt returned to action after a torn ACL?,26688,none,0.0,0
+4,In which country was Wilhelm Müller born?,germany,none,0.0,0
+5,In which Italian region did Pesce studied medicine?,liguria,none,0.0,0
+6,"What albums were ranked higher than ""It Takes a Nation of Millions to Hold Us Back"" in Rolling Stone's the 500 Greatest Albums of All Time?",none,none,1.0,1
+7,When was the sports organization that the Turks and Caicos Islands became affiliate members in 2002 founded?,1909,louis vuitton cup founded in 1983,0.0,0
+8,When was the port established at the Port Phillip District?,none,none,1.0,1
+9,"At which tournament were more goals scored, 1984 Canada Cup or 1994 Ice Hockey World Championship?",none,none,1.0,1
+10,How much money did IBM earn the year Delicious was founded?,none,none,1.0,1
+11,How many years had Mike Elizondo been a producer when Nightmare was released?,none,none,1.0,1
+12,How long had Alex Rance been a professional player when he suffered an ACL injury during a season opening match?,11,none,0.0,0
+13,In what country is the city located where the Arabic dialect is spoken by Jews?,iraq,sicily but exact city not specified in text,0.0,0
+14,How many years were there between Pompeii's destruction and the discovery of the Maya site of Cerén?,1897,none,0.0,0
+15,Which university did Don Branby played college football for?,colorado buffaloes,none,0.0,0
+16,How long had the Perthshire Regiment been a going concern for when Harison joined it as a captain?,69,none,0.0,0
+17,When was the university where Tookey served as Editor of Isis founded?,none,none,1.0,1
+18,Which team won the first game in the 2004 National League Division Series?,cardinals,none,0.0,0
+19,Which is the oldest of the schools where Stirner's work was shown between 1985 and 2013?,none,none,1.0,1
+20,"How long had Mystic Records been in business when they recorded ""Be a Man Go to War"" and ""Night Stix""?",none,none,1.0,1
+21,How much money did the Dallas Burn spend in total when they selected Glenn in the 1996 MLS Player Draft?,none,none,1.0,1
+22,How many championship appearances has the team where Ashton played junior hockey had?,5,none,0.0,0
+23,How long is the most important river of  the Chota Nagpur Plateau?,none,none,1.0,1
+24,Had the Chicago White Sox been around longer than the Birminham Barons when he was assigned to the White Sox's minor league system?,yes,none,0.0,0
+25,How old was the person who shot Waitkus the year he was shot?,20,none,0.0,0
+26,In what race was Sohn Kee-chung the gold medalist?,marathon,none,0.0,0
+27,Was Eduard van Beinum still alive whnen Gilmore retired?,no,none,0.0,0
+28,What percentage of the Philippine Revolutionary Army consisted of the Luna Sharpshooters?,none,none,1.0,1
+29,How far away from Lewis' birthplace was the house he built in Alabama?,none,none,1.0,1
+30,Which of the battles Sherman fought during a winter campaign had higher Union casualty rate?,donelson,none,0.0,0
+31,Which country did some of the tribes escaped to after their deportation from northern Mexico?,united states,none,0.0,0
+32,In what county did Hirsch study under Edward C. Tolman and Robert Tryon?,united states,none,0.0,0
+33,What states do the roads that go around flathead lake end in?,arizona,none,0.0,0
+34,What is the birthplace of the person who used Palmer's 1910 photograph of the illuminated Grand Pier Pavilion as found object art in his Note 78?,normandy france,none,0.0,0
+35,How many students were enrolled at the Lomonosov Moscow State University the year Yuri Tschinkel graduated from that same school?,none,none,1.0,1
+36,"Of the schools where Bernard Avishai taught, which one has the highest current enrollment?",duke university,none,0.0,0
+37,"Of the universities where Paranikas studied, which was founded first?",university of munich,none,0.0,0
+38,Is Josh Heupel older than Scott Frost?,no,none,0.0,0
+39,How long had Gorbacheve been in power before the attempted coup?,6,none,0.0,0
+40,How many months was the Northwest Indian War?,120,none,0.0,0
+41,In what city was Romeo's father born?,new orleans,none,0.0,0
+42,How long had the Spruce Grove Mets been a team when they won the Centennial Cup?,1,none,0.0,0
+43,Which team won the 1964 championship where Swimburne made his debut?,none,none,1.0,1
+44,"Which singer was younger when they recorded a cover of Madonna's song, Jody Watley or Nivek Ogre?",nivek ogre,none,0.0,0
+45,What was the first named storm of the 2019 hurricane season?,andrea,none,0.0,0
+46,"What was the construction cost of the stadium that the Cardinals moved into in Glendale, Arizona?",455 million,none,0.0,0
+47,How long had the French Foreign Legion been in existence when Wolff signed up?,none,none,1.0,1
+48,What is the population of the island nation that suffered minor damage from Hurricane Betsy?,332634,none,0.0,0
+49,In what months did Hurricane Katrine and Hurricane Rita hit?,august 2005,none,0.0,0
+50,How old was John Cena when he interrupted Paul Heyman?,27,none,0.0,0
+51,How old was Ed Greenwood when he wrote an article in Dragon #54?,22,none,0.0,0
+52,When was the Mexican president that the Plan of Ayutla was aimed to remove first elected to office?,1833,none,0.0,0
+53,Which of the seas that surround the United Kingdom is the largest?,atlantic ocean,atlantic ocean,1.0,1
+54,How many students attend the college that Community Transit operates local routes to?,46000,none,0.0,0
+55,What year was the General Motors Corporation founded?,1908,none,0.0,0
+56,Which team won the first championship of the league that the Los Angeles Chargers play in?,akron pros,none,0.0,0
+57,Who was the youngest man to play Templeton Peck?,bradley cooper,none,0.0,0
+58,When was the last time El Faraon and Sangre Chicana fought?,none,none,1.0,1
+59,How many games were in the Neo Geo's catalog the year Double Dragon was released for the system?,none,none,1.0,1
+60,Was World War II still going on when the Red Army was left Magdeburg?,yes,none,0.0,0
+61,Did the Cleveland Cavalier try to recruit Michael Jordan?,none,none,1.0,1
+62,How many seasons have there been of the show that starred actress Nicollette Sheridan?,eight,none,0.0,0
+63,When was the incumbent leader of the liberal party during the 2019 federal election first elected to office?,2008,none,0.0,0
+64,Is Banff National Park bigger than Jasper National Park?,jasper national park,none,0.0,0
+65,What was the population of Bohemia when Feodor Ostrogski visited with Sigismund Korybut?,none,none,1.0,1
+66,Who is the wife of the man who was named the world's richest in 2015?,melinda french,none,0.0,0
+67,In which state did Mark Sanchez play college football?,california,none,0.0,0
+68,Who played guitar for Suffocation when Incantation was formed?,guy marchais,none,0.0,0
+69,When was the record label owned by Brian Slagel founded?,1982,none,0.0,0
+70,"How old was John Wayne when the original story for the film ""In Old California"" was written?",35,none,0.0,0
+71,Which of the non-rural-themed shows canceled by CBS in 1971 was aired first?,hogans heroes,none,0.0,0
+72,What is the length of the body of water that L-28B  crosses before meeting Skyline Drive?,290 mi,none,0.0,0
+73,What was Blaschek's time when he won the silver medal at the 2006 European Athletics Championships?,none,none,1.0,1
+74,How many people lived in Kinross the year that Duncan make his debut in the Football League?,none,none,1.0,1
+75,What is the population of the city where Pearson worked in a shipping office?,466415,none,0.0,0
+76,How many daily subscriptions does the newspaper have that Jeannette Catsoulis writes for?,none,none,1.0,1
+77,How many acres in size is the famous park where they will visit in later stanzas?,843 acre,none,0.0,0
+78,How many people make up the American Conservative Union?,none,none,1.0,1
+79,When was the team that Denis Stracqualursi played against in his first full start founded?,1874,none,0.0,0
+80,Who was the older of the two Terraplane members who formed the band Thunder?,danny bowes,none,0.0,0
+81,Did the directors work on any other Brothers Grimm fairy tales?,none,none,1.0,1
+82,How old was Schmalz when he made the original Homeless Jesus sculpture?,none,none,1.0,1
+83,What was the population of Tuscany the year that Rogers was born?,none,none,1.0,1
+84,Who was the leader of the Democratic Progressive Party when the Economic Cooperation Framework Agreement was signed?,none,none,1.0,1
+85,How many years passed between the founding of the university where his paternal great-grandfather served as president and the university that his paternal great-grandmother was a co-founder of?,4,none,0.0,0
+86,Who did Belarus play in the Euro 2004 qualifying campaign?,austria,none,0.0,0
+87,How long had Boston Bruins been a team when Minnesota North Starts reverse drafted Heindl Jr?,46,none,0.0,0
+88,What teams played in the division that Ball made his debut in?,he original 22 teams in third division,none,0.0,0
+89,How old was Mario Morales when he won the championship in 1989?,32,none,0.0,0
+90,When was the position that Williams served in 1984 first established?,1789,none,0.0,0
+91,How old was Castor when he joined The Teenagers?,40,none,0.0,0
+92,In what city did Simons attend Law Shcool?,pretoria,none,0.0,0
+93,How long had Nagoya Grampus Eight been in existence when kazuki Sawada joined the club?,none,none,1.0,1
+94,How much money did Santos Limited make the year Port Bonython was established?,none,none,1.0,1
+95,How far did Schooley travel from his hometown when he attended college?,none,none,1.0,1
+96,How old was the artist whose song Isa Raja sang to advance to the Bootcamp round of X Factor Indonesia when he died?,36,none,0.0,0
+97,What other ships were in the fleet with the Dreadnought when she was commissioned? ,none,none,1.0,1
+98,How many years after Chess Records was founded did Checker Records begin business?,2,none,0.0,0
+99,On what date did the Loma Prieta earthquake occur?,19891018,none,0.0,0
+100,How old was Timothy Michael Healy when he served as the first Governor-General of the Irish Free State?,67,none,0.0,0
+101,What year was construction completed on the mall that Eastwood Field's name was changed to match in 2003?,1969,none,0.0,0
+102,Who is the current president of the country from which South Africa sent troops into southern Angola?,none,none,1.0,1
+103,What was Sega's entry into the third generation of video game consoles?,sg1000,none,0.0,0
+104,In what state did Bob Kahn receive his electrical engineering degree?,new york city,none,0.0,0
+105,What color(s) are the uniforms worn by the club Tony Cousins signed for in September 1989?,none,none,1.0,1
+106,How many students were enrolled at Washington and Lee University School of Law the year DeVane graduated from that school with a BA?,none,none,1.0,1
+107,How old was Robert Daniel Murphy when Livingston T. Merchant succeeded him?,65,none,0.0,0
+108,How old was Dontrelle Willis when he became 2003 NL Rookie of the Year?,21,none,0.0,0
+109,How many men did Norris command when he received his promotion to rear admiral?,none,none,1.0,1
+110,How old was Richard Boone the year McCloud premiered?,53,none,0.0,0
+111,What is the area in square miles of the city PA 41 reaches becoming Gap Newport Pike?,172,none,0.0,0
+112,During what years did the Tang Dynast rule China?,618 to 907,none,0.0,0
+113,What is the elevation of the easiest pass over the U.S. continental divide?,7412 ft and 7550 ft,none,0.0,0
+114,In what year was the Monastery of the West renamed Shankh Monastery?,1787,none,0.0,0
+115,How old was Michael Heiss the year that he ordained James Schwebach?,51,none,0.0,0
+116,In what country did Christina of the Isles possibly shelter Robert the Bruce.,scotland,scotland or ireland none specific mentioned,0.2857142857142857,0
+117,How long had the Embassy Theatre been a going concern for the year that Adams performed his first role there?,none,none,1.0,1
+118,In what city did Northwestern play it's conference road opener?,west lafayette indiana,none,0.0,0
+119,In which country did Rk Torfs contributed as a weekly columnist  for a newspaper?,belgium,none,0.0,0
+120,What is the relationship between the person who appointed van Maanen Minister of Justice in 1806 and the person who appointed him to the  Council of State and as head of the Court of Appeals in The Hague in 1810?,brother,none,0.0,0
+121,Which township on the PA 772 route has the largest population? ,warwick township,none,0.0,0
+122,Who won the third game of the season between the Suns and the LA Clippers?,none,none,1.0,1
+123,How long had the São Paulo Futebol Clube been a team when Marcelo Veridiano joined them?,56,none,0.0,0
+124,How many miles/kilometers does the plain stretch for?,none,none,1.0,1
+125,When did the battle that Oliver Hazard Perry served as a hero take place?,10 september 1813,none,0.0,0
+126,What year was Camden Yards built?,1992,none,0.0,0
+127,Which operation that Gusarov took part in had the most casualties?,battle of kharkov,none,0.0,0
+128,"Of the colleges and universities Zane attended, which one was founded first?",none,university of catania founded in 1434,0.0,0
+129,What areas did the 1899 Harriman Expedition explore?,coast of alaska for two months from seattle to alaska and siberia,none,0.0,0
+130,When did Garbage's studio in Wisconsin first open?,1983,none,0.0,0
+131,How long had the Bradford Cathedral been in existence for the year that Alan Smith became a deacon at Petertide?,1200,none,0.0,0
+132,Did the Vietnamese Communist Party for after the birth of the Democratic Republic of Vietnam?,no,none,0.0,0
+133,Did Thomas Laqueur write his book while Freud was still alive?,none,none,1.0,1
+134,Why did President Trump fire FBI director James Comey?,dismissing comey relieved unnecessary pressure on his ability to engage and negotiate with russia,none,0.0,0
+135,Where did the player who the Nets drafted first in 2000 attend college?,cincinnati,none,0.0,0
+136,Did Gate Dancer enter the 1984 Kentucky Derby?,none,none,1.0,1
+137,"How much was Jan Mølby worth when he spent £50,000 to bring Moreira to the Welsh club?",none,none,1.0,1
+138,When was the school where Eliezer attended from 1955 to 1956 founded?,1930,none,0.0,0
+139,How many teams competed in the Super Rugby competition in 2011?,15,none,0.0,0
+140,In what county is the college located where Scrushy took a teaching position after divorcing his wife?,dale,none,0.0,0
+141,How old was Qasim al-Ahmad when he led his kinsmen in revolt?,none,none,1.0,1
+142,What position did Pacquette play in his first-team debut on February 1 2000?,none,none,1.0,1
+143,What part of Calgary Bay is Mull on?,eastern end,none,0.0,0
+144,How old was Underwood when he first described Polyozellus in writing?,46,none,0.0,0
+145,Which of the destinations had the largest population after Brasil was rebuilt and renamed to Homeland?,none,none,1.0,1
+146,Was Rao alive when Manmohan Singh was prime minister?,yes,none,0.0,0
+147,Who was in charge of the London County Council when construction of Becontree estate began in Dagenham?,municipal reformers,none,0.0,0
+148,How many years passed between the sack of Constantinople and the year that Leo Sgouros killed himself?,4,none,0.0,0
+149,"How many weeks did ""What Hurts the Most"" spend at #1?",none,none,1.0,1
