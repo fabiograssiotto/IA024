@@ -1,52 +1,52 @@
 ,question,answer,LLM answer,F1,Exact Match
-0,What is Zeus know for in Greek mythology?,sky and thunder god,zeus is known as sky and thunder god in ancient greek religion who rules as king of gods of mount olympus,0.32,0
-1,How long had the First World War been over when Messe was named aide-de-camp?,5,based on provided information it seems that messe was named aidedecamp in 1923 since world war i ended in 1918 it had been around 5 years since war ended when messe was named aidedecamp,0.05714285714285715,0
-2,How old was Messe when the First World War started?,30,unfortunately provided information does not mention messes age when first world war started text only mentions messes birthdate as 10 december 1883 but does not provide age at start of war,0.0,0
-3,"How long had Angela Scoular been acting professionally when she appeared in the movie ""On Her Majesty's Secret Service""?",2,based on information provided angela scoular was born on november 8 1945 and appeared in movie on her majestys secret service in 1969 therefore she had been acting professionally for approximately 24 years when she appeared in movie,0.0,0
-4,What is the capacity of the stadium where Brunt returned to action after a torn ACL?,26688,capacity of stadium where brunt returned to action after torn acl is 36284,0.0,0
-5,"Which stadium where Brunt played can hold more people, The Hawthorns or White Hart Lane?",white hart lane,white hart lane can hold more people with capacity of 36284 compared to hawthorns which has capacity of 26688,0.2727272727272727,0
-6,In which country was Wilhelm Müller born?,germany,wilhelm müller was born in germany,0.2857142857142857,0
-7,Which battle Wilhelm Müller fought in while in the Prussian army had the highest casualty?,kulm,battle wilhelm müller fought in while in prussian army that had highest casualty was battle of kulm,0.1111111111111111,0
-8,How much time had passed between Wilhelm's return to studies at Berlin and the birth of his son Friedrich?,9,based on information provided it appears that wilhelm returned to his studies at berlin in 1814 and his son friedrich was born in 1823 so approximately 9 years had passed between wilhelms return to studies at berlin and birth of his son friedrich,0.04545454545454545,0
-9,Which of Wilhelm's direct male descendants lived the longest? ,friedrich max müller,wilhelm max müller 15 may 1862 – july 1919 lived longest among wilhelms direct male descendants,0.21052631578947367,0
-10,In which Italian region did Pesce studied medicine?,liguria,italian region where pesce studied medicine is liguria specifically at university of genoa,0.14285714285714288,0
-11,Which country hosted the 1948 Leprosy Congress?,cuba,based on observation from gettop5 tool i found relevant piece of information that suggests 1948 leprosy congress was held in havana therefore answer is cuba,0.07692307692307693,0
-12,When was the sports organization that the Turks and Caicos Islands became affiliate members in 2002 founded?,1909,sports organization that turks and caicos islands became affiliate members of in 2002 is international cricket council icc which was founded in 1909 as imperial cricket conference,0.07142857142857142,0
-13,What was the founding date of the championship the Turks and Caicos Islands national cricket team finished as runners up in 2006?,2000,unfortunately provided information does not directly answer question about founding date of championship turks and caicos islands national cricket team finished as runners up in 2006 however i can try to help you find answer can you provide more context or information about championship youre referring to,0.0,0
-14,How many years did the player who  top-scored for Turks and Caicos Islands during  the 2008 Standford 20/20 play for the team?,1,information provided does not explicitly state number of years player played for team however based on information donovan anthony matthews played for turks and caicos islands in 2008 stanford 2020 but duration of his play is not specified,0.0,0
-15,How many teams play in the NHL?,31,there are currently 32 teams that play in national hockey league nhl,0.0,0
-16,Which hockey team won the World Cup in 1996?,usa,there seems to be some confusion world cup is tournament for association football soccer not hockey 1996 world cup did not feature hockey teams if you meant to ask about different tournament please clarify,0.0,0
-17,Who is the mayor of the city where the album was mixed by Andy Wallace?,bill de blasio,unfortunately provided information does not directly mention mayor of city where album was mixed by andy wallace however it does mention that album was mixed in new york city to find mayor of new york city at time album was mixed i would need more information about album such as release date or approximate time period when it was mixed,0.0,0
-18,How long had Alex Rance been a professional player when he suffered an ACL injury during a season opening match?,11,based on provided information alex rance suffered acl injury during seasonopening match but exact number of years he had been professional player is not explicitly stated however we can infer that he was already established player having been premiership player fivetime allaustralian and winner of richmonds bestandfairest award,0.0,0
-19,Which media that noticed the omission of accolade for Vlastuin  was in operation first?,herald sun,based on observation it seems that fox footy and herald sun were media that noticed omission of accolade for vlastuin,0.18181818181818182,0
-20,In what country is the city located where the Arabic dialect is spoken by Jews?,iraq,city where arabic dialect is spoken by jews is located in iraq specifically in baghdad,0.125,0
-21,How many years were there between Pompeii's destruction and the discovery of the Maya site of Cerén?,1897,based on provided information pompeii was destroyed in 79 ad and maya site of cerén was discovered in 1978 therefore there are approximately 1899 years between pompeiis destruction and discovery of maya site of cerén,0.0,0
-22,Which Central American country Payson D. Sheets worked at is the largest in area?,costa rica,el salvador,0.0,0
-23,Which university did Don Branby played college football for?,colorado buffaloes,university of colorado boulder,0.3333333333333333,0
-24,Who were the other end position players on the All-America Teams the same year Don Branby was selected?,frank mcphee princeton bernie flowers purdue eddie bell pennsylvania tom stolhandske texas tom scott virginia joe collier northwestern don branby colorado buck martin georgia tech steve mellinger kentucky ed luke michigan state harry babcock georgia,based on observation it seems that information provided is about don branbys selection to 1952 college football allamerica teams but it does not specifically mention other end position players on allamerica teams same year therefore i couldnt find exact answer to question,0.025974025974025976,0
-25,How long had the Associated Press been in operation when they selected Don Branby for the All-America Teams?,106,associated press was founded in 1846 so when they selected don branby for allamerica teams in 1952 they had been in operation for 106 years,0.07692307692307693,0
-26,How long had the Perthshire Regiment been a going concern for when Harison joined it as a captain?,69,based on provided information it seems that perthshire regiment was formed in 1780 as 73rd regiment of foot and it amalgamated with 42nd regiment of foot to form black watch royal highlanders in 1881 therefore when harison joined it as captain regiment had been going concern for approximately 69 years,0.0392156862745098,0
-27,When was the company for which Tookey called a protest for founded?,7 may 1946,observation results do not provide direct answer to question however based on context it appears that company in question is sony which was founded on may 7 1946,0.19354838709677416,0
-28,"Of the films Tookey claimed to have defended against censorship, which one had the highest box office?",pulp fiction,based on information provided it appears that reservoir dogs is one of films tookey claimed to have defended against censorship according to box office mojo reservoir dogs 1992 has worldwide box office gross of over 28 million while box office figures for other films mentioned are not provided it is likely that reservoir dogs had highest box office among films mentioned,0.0,0
-29,Who is the current director of the board which Tookey questioned the suitability?,david austin,current director of board is not explicitly mentioned in provided information however based on context it appears that question is referring to british board of film classification and director being questioned by tookey is not specified,0.0,0
-30,Which team won the first game in the 2004 National League Division Series?,cardinals,st louis cardinals won first game in 2004 national league division series,0.15384615384615385,0
-31,How old was the Grand Olympic Auditorium at the time of New Regime playing a landmark concert there?,60,based on information provided grand olympic auditorium was built in 1924 and landmark concert by new regime took place on april 13 1984 therefore grand olympic auditorium was approximately 60 years old at time of concert,0.05405405405405406,0
-32,Who owned the Rochester Rhinos when Glenn left the team?,rochester new york,ownership of rochester rhinos when glenn left team is not explicitly stated in provided information however based on context it can be inferred that glenn was player for rochester rhinos and left team in may 2001 due to contract disagreements,0.046511627906976744,0
-33,Who owned the last team Glenn ever played for when he first signed with them?,sam chase,atlanta silverbacks,0.0,0
+0,What is Zeus know for in Greek mythology?,sky and thunder god,king of gods on mount olympus,0,0
+1,How long had the First World War been over when Messe was named aide-de-camp?,5,5 years,0.6666666666666666,0
+2,How old was Messe when the First World War started?,30,31,0,0
+3,"How long had Angela Scoular been acting professionally when she appeared in the movie ""On Her Majesty's Secret Service""?",2,10 years,0,0
+4,What is the capacity of the stadium where Brunt returned to action after a torn ACL?,26688,36284,0,0
+5,"Which stadium where Brunt played can hold more people, The Hawthorns or White Hart Lane?",white hart lane,white hart lane,1.0,1
+6,In which country was Wilhelm Müller born?,germany,germany,1.0,1
+7,Which battle Wilhelm Müller fought in while in the Prussian army had the highest casualty?,kulm,battle of kulm,0.5,0
+8,How much time had passed between Wilhelm's return to studies at Berlin and the birth of his son Friedrich?,9,2 years,0,0
+9,Which of Wilhelm's direct male descendants lived the longest? ,friedrich max müller,wilhelm max müller 57 years,0.5,0
+10,In which Italian region did Pesce studied medicine?,liguria,liguria region,0.6666666666666666,0
+11,Which country hosted the 1948 Leprosy Congress?,cuba,cuba,1.0,1
+12,When was the sports organization that the Turks and Caicos Islands became affiliate members in 2002 founded?,1909,1909,1.0,1
+13,What was the founding date of the championship the Turks and Caicos Islands national cricket team finished as runners up in 2006?,2000,1996,0,0
+14,How many years did the player who  top-scored for Turks and Caicos Islands during  the 2008 Standford 20/20 play for the team?,1,1 year,0.6666666666666666,0
+15,How many teams play in the NHL?,31,31,1.0,1
+16,Which hockey team won the World Cup in 1996?,usa,no hockey team won world cup in 1996,0,0
+17,Who is the mayor of the city where the album was mixed by Andy Wallace?,bill de blasio,new york city mayor not specified,0,0
+18,How long had Alex Rance been a professional player when he suffered an ACL injury during a season opening match?,11,11 years,0.6666666666666666,0
+19,Which media that noticed the omission of accolade for Vlastuin  was in operation first?,herald sun,herald sun,1.0,1
+20,In what country is the city located where the Arabic dialect is spoken by Jews?,iraq,iraq,1.0,1
+21,How many years were there between Pompeii's destruction and the discovery of the Maya site of Cerén?,1897,1733,0,0
+22,Which Central American country Payson D. Sheets worked at is the largest in area?,costa rica,el salvador,0,0
+23,Which university did Don Branby played college football for?,colorado buffaloes,university of colorado,0.4,0
+24,Who were the other end position players on the All-America Teams the same year Don Branby was selected?,frank mcphee princeton bernie flowers purdue eddie bell pennsylvania tom stolhandske texas tom scott virginia joe collier northwestern don branby colorado buck martin georgia tech steve mellinger kentucky ed luke michigan state harry babcock georgia,not provided in given information,0,0
+25,How long had the Associated Press been in operation when they selected Don Branby for the All-America Teams?,106,106 years,0.6666666666666666,0
+26,How long had the Perthshire Regiment been a going concern for when Harison joined it as a captain?,69,1 year,0,0
+27,When was the company for which Tookey called a protest for founded?,7 may 1946,sony founded in 1946,0.28571428571428575,0
+28,"Of the films Tookey claimed to have defended against censorship, which one had the highest box office?",pulp fiction,pulp fiction,1.0,1
+29,Who is the current director of the board which Tookey questioned the suitability?,david austin,not found in provided information,0,0
+30,Which team won the first game in the 2004 National League Division Series?,cardinals,st louis cardinals,0.5,0
+31,How old was the Grand Olympic Auditorium at the time of New Regime playing a landmark concert there?,60,59 years old,0,0
+32,Who owned the Rochester Rhinos when Glenn left the team?,rochester new york,steve holroyd,0,0
+33,Who owned the last team Glenn ever played for when he first signed with them?,sam chase,atlanta silverbacks,0,0
 34,"What state did Glenn finish his career in?
-",georgia,atlanta,0.0,0
-35,How many championship appearances has the team where Ashton played junior hockey had?,5,saskatoon blades have won three championship titles 1967 memorial cup 1983 memorial cup and 2014 memorial cup,0.0,0
-36,In what year was the team founded who Ashton played junior hockey for?,1964,saskatoon blades were founded in 1964 as saskatoon wesleyans,0.19999999999999998,0
-37,Who is the oldest teammate of Ashton's when he played junior hockey?,george pesut,based on provided information it seems that ashton played junior hockey for saskatoon blades and his teammates included bob bourne dave lewis and george pesut however its not clear who oldest teammate was if you could provide more context or information id be happy to try and help you further,0.07692307692307693,0
-38,Had the Chicago White Sox been around longer than the Birminham Barons when he was assigned to the White Sox's minor league system?,yes,chicago white sox were established in 1901 and birmingham barons were established in 1901 as well although they were previously known as birmingham coal barons so when michael jordan was assigned to white soxs minor league system two teams had been around for roughly same amount of time,0.0,0
-39,Did the Bulls owner also own the Chicago White sox?,yes,yes owner of chicago bulls jerry reinsdorf also owns chicago white sox,0.15384615384615385,0
-40,What stadium do the Chicago White Sox play in?,guaranteed rate field,chicago white sox play their home games at guaranteed rate field,0.42857142857142855,0
-41,How old was the person who shot Waitkus the year he was shot?,20,ruth ann steinhagen was 19 years old when she shot eddie waitkus in 1949,0.0,0
-42,How long had Eddie Waitkus been playing professionally when he was traded to the Phils?,10,based on information provided eddie waitkus had 11year career in major league baseball playing from 1941 to 1955 therefore when he was traded to phillies he had been playing professionally for around 78 years,0.0,0
-43,In what race was Sohn Kee-chung the gold medalist?,marathon,marathon at 1936 berlin olympics,0.33333333333333337,0
-44,How much behind did the was the bronze medalist from the gold medalist?,1428,unfortunately provided information does not directly answer question about time difference between gold medalist and bronze medalist however it provides some information about athletes who participated in 1936 summer olympics including sohn keechung who won gold medal and nam sungyong who won bronze medal if youre looking for exact time difference id be happy to help you find that information,0.0,0
-45,In what year was Japan defeated in World War II?,1945,japan was defeated in world war ii in 1945,0.19999999999999998,0
-46,What year did Suh Yun-bok win the Boston Marathon?,1947,suh yunbok won boston marathon in 1947,0.25,0
-47,Was Eduard van Beinum still alive whnen Gilmore retired?,no,based on provided information eduard van beinum passed away on april 13 1959 gilmores retirement date is not specified but it is likely that eduard van beinum was still alive when gilmore retired assuming gilmore retired before 1959,0.0,0
-48,Which of the battles Sherman fought during a winter campaign had higher Union casualty rate?,donelson,battle of fort donelson had higher union casualty rate,0.19999999999999998,0
-49,Which country did some of the tribes escaped to after their deportation from northern Mexico?,united states,country that some of tribes escaped to after their deportation from northern mexico is united states specifically southern arizona,0.1904761904761905,0
+",georgia,georgia,1.0,1
+35,How many championship appearances has the team where Ashton played junior hockey had?,5,saskatoon blades had 2 championships,0,0
+36,In what year was the team founded who Ashton played junior hockey for?,1964,1966,0,0
+37,Who is the oldest teammate of Ashton's when he played junior hockey?,george pesut,bob bourne,0,0
+38,Had the Chicago White Sox been around longer than the Birminham Barons when he was assigned to the White Sox's minor league system?,yes,white sox older than barons,0,0
+39,Did the Bulls owner also own the Chicago White sox?,yes,yes jerry reinsdorf owns both,0.33333333333333337,0
+40,What stadium do the Chicago White Sox play in?,guaranteed rate field,guaranteed rate field,1.0,1
+41,How old was the person who shot Waitkus the year he was shot?,20,19,0,0
+42,How long had Eddie Waitkus been playing professionally when he was traded to the Phils?,10,11 years,0,0
+43,In what race was Sohn Kee-chung the gold medalist?,marathon,marathon,1.0,1
+44,How much behind did the was the bronze medalist from the gold medalist?,1428,2 minutes 46 seconds,0,0
+45,In what year was Japan defeated in World War II?,1945,1945,1.0,1
+46,What year did Suh Yun-bok win the Boston Marathon?,1947,1947,1.0,1
+47,Was Eduard van Beinum still alive whnen Gilmore retired?,no,no he was not alive,0.33333333333333337,0
+48,Which of the battles Sherman fought during a winter campaign had higher Union casualty rate?,donelson,fort donelson had higher union casualty rate,0.25,0
+49,Which country did some of the tribes escaped to after their deportation from northern Mexico?,united states,united states,1.0,1
