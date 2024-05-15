@@ -1,52 +1,52 @@
 ,question,answer,LLM answer,F1,Exact Match
-0,What is Zeus know for in Greek mythology?,sky and thunder god,king of gods in greek mythology,0,0
+0,What is Zeus know for in Greek mythology?,sky and thunder god,king of gods on mount olympus,0,0
 1,How long had the First World War been over when Messe was named aide-de-camp?,5,5 years,0.6666666666666666,0
 2,How old was Messe when the First World War started?,30,31,0,0
 3,"How long had Angela Scoular been acting professionally when she appeared in the movie ""On Her Majesty's Secret Service""?",2,10 years,0,0
-4,What is the capacity of the stadium where Brunt returned to action after a torn ACL?,26688,26688,1.0,1
+4,What is the capacity of the stadium where Brunt returned to action after a torn ACL?,26688,36284,0,0
 5,"Which stadium where Brunt played can hold more people, The Hawthorns or White Hart Lane?",white hart lane,white hart lane holds more people,0.6666666666666666,0
 6,In which country was Wilhelm Müller born?,germany,germany,1.0,1
 7,Which battle Wilhelm Müller fought in while in the Prussian army had the highest casualty?,kulm,battle of bautzen,0,0
-8,How much time had passed between Wilhelm's return to studies at Berlin and the birth of his son Friedrich?,9,19 years,0,0
-9,Which of Wilhelm's direct male descendants lived the longest? ,friedrich max müller,wilhelm max müller 57 years,0.5,0
+8,How much time had passed between Wilhelm's return to studies at Berlin and the birth of his son Friedrich?,9,9 years,0.6666666666666666,0
+9,Which of Wilhelm's direct male descendants lived the longest? ,friedrich max müller,wilhelm max müller 1919,0.5714285714285715,0
 10,In which Italian region did Pesce studied medicine?,liguria,liguria,1.0,1
 11,Which country hosted the 1948 Leprosy Congress?,cuba,cuba,1.0,1
-12,When was the sports organization that the Turks and Caicos Islands became affiliate members in 2002 founded?,1909,1909,1.0,1
-13,What was the founding date of the championship the Turks and Caicos Islands national cricket team finished as runners up in 2006?,2000,1909,0,0
+12,When was the sports organization that the Turks and Caicos Islands became affiliate members in 2002 founded?,1909,international cricket council founded in 1909,0.2857142857142857,0
+13,What was the founding date of the championship the Turks and Caicos Islands national cricket team finished as runners up in 2006?,2000,2002,0,0
 14,How many years did the player who  top-scored for Turks and Caicos Islands during  the 2008 Standford 20/20 play for the team?,1,1,1.0,1
 15,How many teams play in the NHL?,31,31,1.0,1
 16,Which hockey team won the World Cup in 1996?,usa,no hockey team won world cup in 1996,0,0
 17,Who is the mayor of the city where the album was mixed by Andy Wallace?,bill de blasio,mayor of new york city,0,0
-18,How long had Alex Rance been a professional player when he suffered an ACL injury during a season opening match?,11,11 years,0.6666666666666666,0
+18,How long had Alex Rance been a professional player when he suffered an ACL injury during a season opening match?,11,10 years,0,0
 19,Which media that noticed the omission of accolade for Vlastuin  was in operation first?,herald sun,herald sun,1.0,1
 20,In what country is the city located where the Arabic dialect is spoken by Jews?,iraq,iraq,1.0,1
 21,How many years were there between Pompeii's destruction and the discovery of the Maya site of Cerén?,1897,1733,0,0
 22,Which Central American country Payson D. Sheets worked at is the largest in area?,costa rica,el salvador,0,0
 23,Which university did Don Branby played college football for?,colorado buffaloes,university of colorado,0.4,0
-24,Who were the other end position players on the All-America Teams the same year Don Branby was selected?,frank mcphee princeton bernie flowers purdue eddie bell pennsylvania tom stolhandske texas tom scott virginia joe collier northwestern don branby colorado buck martin georgia tech steve mellinger kentucky ed luke michigan state harry babcock georgia,check 1952 college football allamerica teams,0,0
+24,Who were the other end position players on the All-America Teams the same year Don Branby was selected?,frank mcphee princeton bernie flowers purdue eddie bell pennsylvania tom stolhandske texas tom scott virginia joe collier northwestern don branby colorado buck martin georgia tech steve mellinger kentucky ed luke michigan state harry babcock georgia,not provided in given information,0,0
 25,How long had the Associated Press been in operation when they selected Don Branby for the All-America Teams?,106,1846,0,0
-26,How long had the Perthshire Regiment been a going concern for when Harison joined it as a captain?,69,1849,0,0
-27,When was the company for which Tookey called a protest for founded?,7 may 1946,1931,0,0
+26,How long had the Perthshire Regiment been a going concern for when Harison joined it as a captain?,69,1780,0,0
+27,When was the company for which Tookey called a protest for founded?,7 may 1946,sony founded in 1946,0.28571428571428575,0
 28,"Of the films Tookey claimed to have defended against censorship, which one had the highest box office?",pulp fiction,pulp fiction,1.0,1
-29,Who is the current director of the board which Tookey questioned the suitability?,david austin,gerard warner,0,0
+29,Who is the current director of the board which Tookey questioned the suitability?,david austin,none mentioned in text,0,0
 30,Which team won the first game in the 2004 National League Division Series?,cardinals,st louis cardinals,0.5,0
-31,How old was the Grand Olympic Auditorium at the time of New Regime playing a landmark concert there?,60,59,0,0
-32,Who owned the Rochester Rhinos when Glenn left the team?,rochester new york,rochester rhinos owner unknown,0.28571428571428575,0
+31,How old was the Grand Olympic Auditorium at the time of New Regime playing a landmark concert there?,60,60 years old,0.5,0
+32,Who owned the Rochester Rhinos when Glenn left the team?,rochester new york,steve holroyd,0,0
 33,Who owned the last team Glenn ever played for when he first signed with them?,sam chase,atlanta silverbacks,0,0
 34,"What state did Glenn finish his career in?
 ",georgia,georgia,1.0,1
-35,How many championship appearances has the team where Ashton played junior hockey had?,5,saskatoon blades won 2 championships,0,0
+35,How many championship appearances has the team where Ashton played junior hockey had?,5,saskatoon blades had 2 championships,0,0
 36,In what year was the team founded who Ashton played junior hockey for?,1964,1966,0,0
-37,Who is the oldest teammate of Ashton's when he played junior hockey?,george pesut,george pesut,1.0,1
-38,Had the Chicago White Sox been around longer than the Birminham Barons when he was assigned to the White Sox's minor league system?,yes,yes white sox older,0.4,0
+37,Who is the oldest teammate of Ashton's when he played junior hockey?,george pesut,bob bourne,0,0
+38,Had the Chicago White Sox been around longer than the Birminham Barons when he was assigned to the White Sox's minor league system?,yes,white sox older than barons,0,0
 39,Did the Bulls owner also own the Chicago White sox?,yes,yes jerry reinsdorf owns both,0.33333333333333337,0
 40,What stadium do the Chicago White Sox play in?,guaranteed rate field,guaranteed rate field,1.0,1
 41,How old was the person who shot Waitkus the year he was shot?,20,19,0,0
 42,How long had Eddie Waitkus been playing professionally when he was traded to the Phils?,10,11 years,0,0
 43,In what race was Sohn Kee-chung the gold medalist?,marathon,marathon,1.0,1
-44,How much behind did the was the bronze medalist from the gold medalist?,1428,2 hours 31 minutes 42 seconds,0,0
+44,How much behind did the was the bronze medalist from the gold medalist?,1428,3 minutes 42 seconds,0,0
 45,In what year was Japan defeated in World War II?,1945,1945,1.0,1
 46,What year did Suh Yun-bok win the Boston Marathon?,1947,1947,1.0,1
 47,Was Eduard van Beinum still alive whnen Gilmore retired?,no,no he was not alive,0.33333333333333337,0
-48,Which of the battles Sherman fought during a winter campaign had higher Union casualty rate?,donelson,fort donelson had higher casualty rate,0.2857142857142857,0
+48,Which of the battles Sherman fought during a winter campaign had higher Union casualty rate?,donelson,fort donelson had higher union casualty rate,0.25,0
 49,Which country did some of the tribes escaped to after their deportation from northern Mexico?,united states,united states,1.0,1
