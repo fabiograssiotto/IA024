@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
+\usepackage{float}
 
 \title{SocialIqa\_pt: A Translation of a Common-Sense Reasoning Dataset about Social Interactions}
 \author{Fabio Grassiotto}
@@ -48,15 +49,38 @@ This work is structured as follows:
 \begin{itemize}
     \item Section 1 \textbf{(this section)}: Here we introduce the work and its
     motivation.
-    \item Section 2 \textbf{Methodology}: We describe the translation process
+    \item Section 2 \textbf{Dataset}: We describe the SocialIqa dataset in
+    detail
+    \item Section 3 \textbf{Methodology}: We describe the translation process
     and the evaluation system we employed.
-    \item Section 3 \textbf{Dataset}: We describe the SocialIqa dataset in
-    detail.
     \item Section 4 \textbf{Results} : We describe the translated sets results
     and compare them in detail.
     \item Section 5 \textbf{Conclusion and Future Works}: We analyse the results
     we achieved and describe next steps to be taken.
 \end{itemize}
+
+\section{Dataset}
+The Social Intelligence QA dataset was the first available resource upon its
+publication for the measurement of social and emotional intelligence for AI
+systems. The dataset, collected using a crowd-sourced framework,  is comprised
+of around 38k multiple choice questions. Each row consists of a context, a
+question, three options for reply, and the supposed correct answer as determined
+by human peers. An example of the types of questions and choices can be seen below on Table
+\ref{table:SocialIQa}. Some of the sentences are shortened for brevity.
+
+\begin{table}[!ht]
+\makebox[\textwidth][c]{
+    \begin{tabular}{|p{0.9in}|p{0.9in}|p{0.9in}|p{0.9in}|p{0.9in}|p{0.9in}|}\hline
+    context  & question & answerA & answerB & answerC & correct \\\hline
+    Tracy didn't go home that evening... & What does Tracy need to do before this? & make a new plan & Go home and see Riley & Find somewhere to go & C \\\hline
+    Sydney walked past a homeless woman asking for ... & How would you describe Sydney? & sympathetic & like a person... & incredulous & A \\\hline
+    Sasha protected the patients' rights by making ... & What will patients want to do next? & write new laws & get petitions signed & live longer & B \\\hline
+    Jordan was in charge of taking the food... & How would Jordan feel
+    afterwards? & horrible that he... & happy that he doesn't need...& very
+    proud ... & A \\\hline     
+    \end{tabular}}
+    \caption{Example rows from the SocialIQa English dataset.}\label{table:SocialIQa}
+\end{table}
 
 \section{Methodology} 
 
@@ -102,9 +126,6 @@ available at.
     translation and GPT-based evaluation to select the best possible
     translation.}
 \end{figure}
-
-
-\section{Dataset}
 
 \section{Results}
 
