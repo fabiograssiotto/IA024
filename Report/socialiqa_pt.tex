@@ -88,8 +88,7 @@ Each row of the dataset consists of the following sequences of characters:
 \end{itemize}
 
 An example of the types of questions and choices can be seen below on Table
-\ref{table:SocialIQa}. These are the first few rows from the development section
-of the development section of the dataset.
+\ref{table:SocialIQa}. These are the first few rows from the development base of the dataset.
 \input{tables/dataset-table.tex} 
 
 \section{Methodology} 
@@ -202,14 +201,15 @@ available at \cite{socialiqa_pt_impl}.
     JSONL format for publishing. The conversion was performed on file 
     publish\_dataset\_pt.ipynb.
 \end{itemize}
- 
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{drawio/translation.drawio.pdf}
+    \makebox[\textwidth][c]{\includegraphics[width=0.90\textwidth]{drawio/translation.drawio.pdf}}
     \caption{\label{fig:diagram}Translation process including machine
     translation and GPT-based evaluation to select the best possible
     translation.}
 \end{figure}
+\FloatBarrier
 
 \section{Results}
 
@@ -218,9 +218,14 @@ We have compared the results of the translations using the GEMBA method as can b
 \subsection{Selected Translations per Model}
 
 As can be seen on Figure \ref{fig:pie}, the model we selected most of our
-translations was the NLLB-1.3b from Meta. We believe this is due to the fact
-that the strengths of this model lie on the translations of short sentences. It
-is worthy noting that this is the largest model of the group.
+translations from was the NLLB 1.3b from Meta. We believe this is due to the
+fact that the strengths of this model lie on the translations of short
+sentences. It is worthy noting that this is the model that uses the most
+computing resources from the group (around 6 Gbytes of video RAM).
+
+Another conclusion from this chart is that even though NLLB 1.3b has the most
+selected translations, there are still about 20\% of all translations being
+selected from the other machine translation models.
 
 \begin{figure}[htbp]
     \centering
@@ -231,10 +236,11 @@ is worthy noting that this is the largest model of the group.
 
 \subsection{Kernel Density Estimates}
 
-On figure \ref{fig:kde} we plot the Kernel Density Estimates for the
-distribution of the ratings for each model. We note that NLLB-1.3b has the most
-evaluations towards the largest evaluations, while the T5 model has a more flat
-distribution.
+On Figure \ref{fig:kde} we plot the Kernel Density Estimates for the
+distribution of the ratings for each model. We note that, from the machine
+translation models, NLLB 1.3b has the most evaluations towards the largest
+evaluations, while the T5 model has a more flat distribution and Marian MT falls
+in the middle.
 
 \begin{figure}[htbp]
     \centering
@@ -246,8 +252,12 @@ distribution.
 \subsection{Ratings per Sequence Length}
 
 We proceed then to evaluate the impact of sequence length on the translation
-quality in Figure \ref{fig:line-chart}. We did not notice appreciable difference
-among the models we used.
+quality in Figure \ref{fig:line-chart}. The graph compares the rating obtained
+by each row of the original English dataset with the number of tokens of the
+bundled sequence of strings. 
+
+There is some ripple on the evaluation rating for larger sequences, but we did
+not notice appreciable difference among the machine translation models.
 
 \begin{figure}[htpb]
     \centering
@@ -276,6 +286,7 @@ the fact that common-sense reasoning being very sensitive to cultural
 differences, a review of the dataset by Portuguese language speakers would be
 extremely valid for improving the quality of the translation results.
 
+\newpage
 \bibliographystyle{plain}
 \bibliography{socialiqa_pt.bib}
 
