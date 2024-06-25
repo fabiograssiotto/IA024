@@ -25,46 +25,46 @@
 
 \section{Introduction}
 
-Common-Sense inteligence, defined usually as the human ability of applying
+Common-Sense intelligence, usually defined as the human ability of applying
 practical knowledge for decisions in everyday life, is still considered a
 challenging task for AI systems. As it can be readily perceived when interacting
 with chatbots, these systems lack the ability to, through intuition, reason
 about common situations and events. Such reasoning requires background knowledge
-about how the world works, incluind the rich nuanced interaction between people
+about how the world works, including the rich nuanced interaction between people
 in the social sphere \cite{choi2022curious, krause2023commonsense}.
 
 Therefore, in artificial intelligence, the availability of datasets capable of
 benchmarking this task is of utmost importance. Datasets such as Social IQa are
-readily available in the english language, but we are not aware of any in
-portuguese \cite{sap2019socialiqa}.
+readily available in the English language, but we are not aware of any in
+Portuguese \cite{sap2019socialiqa}.
 
-The portuguese language cannot be truly considered a low-resource language as
-it is the case with some of the African and Asian languages, as there are
-datasets already available in portuguese that have millions of tokens. There
+The Portuguese language cannot be truly considered a low-resource language as
+it is the case with some African and Asian languages, as there are
+datasets already available in Portuguese that have millions of tokens. There
 are, however, certainly gaps that should be addressed \cite{ghafoor2021impact}.
 
 One of these gaps lies in the availability of datasets that deal with common
-sense-reasoning and in special datasets that adress social interactions.
+sense-reasoning and in special datasets that address social interactions.
 
 This work is structured as follows:
 \begin{itemize}
     \item Section 1 \textbf{(this section)}: Here we introduce the work and its
     motivation.
-    \item Section 2 \textbf{Dataset}: We describe the SocialIQA original english
+    \item Section 2 \textbf{Dataset}: We describe the SocialIQA original English
     language dataset.
     \item Section 3 \textbf{Methodology}: We describe the translation process
     and the evaluation system we employed.
     \item Section 4 \textbf{Results}: We describe the translated sets results
     and compare them in detail.
-    \item Section 5 \textbf{Conclusion and Future Works}: We analyse the results
+    \item Section 5 \textbf{Conclusion and Future Works}: We analyze the results
     we achieved and describe next steps to be taken.
 \end{itemize}
 
 \section{Dataset}
 The Social Intelligence QA dataset was the first available resource upon its
 publication for the measurement of social and emotional intelligence for AI
-systems \cite{socialiqa}. The dataset, collected using a crowd-sourced framework,  is comprised
-of around 38k multiple choice questions.
+systems \cite{socialiqa}. The dataset, collected using a crowd-sourced
+framework, is composed of around 38k multiple choice questions.
 
 The Social IQa dataset is divided into 3 separate bases:
 \begin{itemize}
@@ -84,7 +84,7 @@ Each row of the dataset consists of the following sequences of characters:
     options that were handwritten to be similar to the correct answers in terms
     of topic, length, and style but are subtly incorrect.
     \item \textbf{Correct} The expected correct answer to the question as
-    determied by human peers.
+    determined by human peers.
 \end{itemize}
 
 An example of the types of questions and choices can be seen below on Table
@@ -113,8 +113,8 @@ This model is part of the OPUS-MT project \cite{tiedemann2020opus}, an effort to
 make neural machine translation models widely available and accessible for many
 languages in the world. All models are originally trained using the amazing
 framework of Marian NMT, an efficient NMT implementation written in pure C++.
-The models have been converted to pyTorch using the transformers library by
-huggingface. Training data is taken from OPUS and training pipelines use the
+The models have been converted to PyTorch using the transformers' library by
+hugging face. Training data is taken from OPUS and training pipelines use the
 procedures of OPUS-MT-train.
 \end{quote}
 
@@ -140,7 +140,7 @@ single sentence translation among 200 languages \cite{costa2022no}.
 
 There are a number of alternatives for evaluating translations
 \cite{lee2023survey}. Evaluations using large language models have been producing
-results closer to human evaluation and therefore we selected this method for
+results closer to human evaluation, and therefore we selected this method for
 this work.
 
 The three translations were thus compared using the evaluation metric
@@ -178,12 +178,12 @@ available at.
 
 \begin{itemize}
     \item \textbf{Step I: English dataset conversion} In this step, the original
-    english dataset was converted from JSON format into a temporary 
+    English dataset was converted from JSON format into a temporary 
     comma-delimited file format for easier processing. The conversion was
     performed on file read\_dataset\_en.ipynb.
     \item \textbf{Step II: Machine Translation} In this step, the original
     dataset, available in three separate files for the development, training and
-    testing sets, was translated to the portuguese language using the three
+    testing sets, was translated to the Portuguese language using the three
     distinct models described in \ref{subsec:machine-translation}. The
     implementations are on files translator\_marian.ipynb, translator\_t5.ipynb
     and translator\_nllb.ipynb.
@@ -231,7 +231,7 @@ is worthy noting that this is the largest model of the group.
 
 On figure \ref{fig:kde} we plot the Kernel Density Estimates for the
 distribution of the ratings for each model. We note that NLLB-1.3b has the most
-evaluations towards largest evaluations, while the T5 model has a more flat
+evaluations towards the largest evaluations, while the T5 model has a more flat
 distribution.
 
 \begin{figure}[htbp]
@@ -255,9 +255,9 @@ among the models we used.
 
 \section{Conclusion and Future Work}
 
-The portuguese language dataset was published at Hugging face at \cite{socialiqa_pt}. 
+The Portuguese language dataset was published at Hugging face at \cite{socialiqa_pt}. 
 
-We should note here some of the advantages and difficulties we found during the
+We should note here some advantages and difficulties we found during the
 conduction of this work. First, machine translation models with low hardware
 requirements were necessary enablers for this work. All the translations were
 performed locally with a consumer-grade graphics card with 16Gb of video RAM.
@@ -268,10 +268,10 @@ at an estimated total cost of less than US\$ 10. It is worth noting, however,
 that OpenAI API speed was quite slow requiring over 50 hours for the whole
 process.
 
-As future work, a through evaluation of the resulting dataset will be required
-to remove incorrections from the translation process. We note also that due to
+As future work, a thorough evaluation of the resulting dataset will be required
+to remove mistakes from the translation process. We note also that due to
 the fact that common-sense reasoning being very sensitive to cultural
-differences, a review of the dataset by portuguese language speakers would be
+differences, a review of the dataset by Portuguese language speakers would be
 extremely valid for improving the quality of the translation results.
 
 \bibliographystyle{plain}

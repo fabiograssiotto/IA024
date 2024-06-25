@@ -1,0 +1,7 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QWhere sourceseg is the original language group of sentences, and targetseg* are the proposed translations from each model.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe conversion was performed on file readdataseten.ipynb.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe implementations are on files translatormarian.ipynb, translatort5.ipynb and translatornllb.ipynb.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe implementation for steps III and IV is executed on files evaluatorgembadev.ipynb, evaluatorgembatrain.ipynb and evaluatorgembatsyt.ipynb respectively for the development, training and test sets.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QStep V: Portuguese Dataset publishing In this step, the comma-delimited file with the final translation contents was converted to JSONL format for publishing.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe conversion was performed on file publishdatasetpt.ipynb.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSocialIQApt: A Translation of a Common-Sense Reasoning Dataset about Social Interactions Fabio Grassiotto 30 June 2024\\E$"}

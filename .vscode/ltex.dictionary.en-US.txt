@@ -1,0 +1,5 @@
+IQa
+GEMBA
+SocialIQA
+opus-mt-tc-big-en-pt
+tokenizator
