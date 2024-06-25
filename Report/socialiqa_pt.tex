@@ -23,7 +23,7 @@
     our dataset.
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction} 
 
 Common-Sense intelligence, usually defined as the human ability of applying
 practical knowledge for decisions in everyday life, is still considered a
@@ -169,12 +169,14 @@ python list:
 Where \emph{source\_seg} is the original language group of sentences, and
 \emph{target\_seg*} are the proposed translations from each model. GPT-3.5-turbo
 replies to this prompt with a Python-style list with the rankings e.g. [80, 85,
-100].
+100]. Due to optimization issues with using the OpenAI API, the entire dataset
+row including the context, question and three answers were bundled together in
+the prompt.
 
 \subsection{Workflow}
 Our workflow consisted of the five steps described in Figure
-\ref{fig:diagram} below. All steps are executed using Python notebook files
-available at.
+\ref{fig:diagram} below. All steps were executed using Python notebook files
+available at \cite{socialiqa_pt_impl}.
 
 \begin{itemize}
     \item \textbf{Step I: English dataset conversion} In this step, the original
@@ -275,6 +277,6 @@ differences, a review of the dataset by Portuguese language speakers would be
 extremely valid for improving the quality of the translation results.
 
 \bibliographystyle{plain}
-\bibliography{main.bib}
+\bibliography{socialiqa_pt.bib}
 
 \end{document}
