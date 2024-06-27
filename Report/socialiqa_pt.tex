@@ -4,10 +4,11 @@
 \usepackage[section]{placeins}
 \usepackage{float}
 \usepackage{url}
+\usepackage{orcidlink}
 
 \title{SocialIQA\_pt: A Translation of a Common-Sense Reasoning Dataset about Social Interactions}
-\author{Fabio Grassiotto}
-\date{30 June 2024}
+\author{Fabio Grassiotto\,\orcidlink{0000-0003-1885-842X}}
+\date{}
 
 \begin{document}
 
@@ -20,7 +21,9 @@
     number of everyday situations. The approach taken here was to perform
     machine translation using popular models available at Hugging Face, rank
     translations using a GPT-driven evaluation (GEMBA) and select the best for
-    our dataset.
+    our dataset.\\
+    \\
+    \textbf{Keywords:} Machine translation, LLM evaluation, Common-sense reasoning.
 \end{abstract}
 
 \section{Introduction} 
@@ -63,17 +66,15 @@ This work is structured as follows:
 \section{Dataset}
 The Social Intelligence QA dataset was the first available resource upon its
 publication for the measurement of social and emotional intelligence for AI
-systems \cite{socialiqa}. The dataset, collected using a crowd-sourced
-framework, is composed of around 38k multiple choice questions.
+systems \cite{socialiqa}.
 
-The Social IQa dataset is divided into 3 separate bases:
-\begin{itemize}
-    \item Development, with 1954 questions/answers.
-    \item Training, with 33410 questions/answers.
-    \item Test, with 2224 questions/answers.
-\end{itemize}
+The dataset, collected using a crowd-sourced
+framework, is composed of around 38k multiple choice questions, divided into 3
+separate bases: development (dev), with 1954 questions/answers, training
+(train), with 33410 questions/answers and test (tst), with 2224
+questions/answers.
 
-Each row of the dataset consists of the following sequences of characters:
+Each row of the dataset consists of the following 6 fields:
 
 \begin{itemize}
     \item \textbf{Context} An observed context for a common situation.
@@ -88,7 +89,8 @@ Each row of the dataset consists of the following sequences of characters:
 \end{itemize}
 
 An example of the types of questions and choices can be seen below on Table
-\ref{table:SocialIQa}. These are the first few rows from the development base of the dataset.
+\ref{table:SocialIQa}. These are the topmost two rows from the development base
+of the dataset.
 \input{tables/dataset-table.tex} 
 
 \section{Methodology} 
@@ -142,9 +144,9 @@ There are a number of alternatives for evaluating translations
 results closer to human evaluation, and therefore we selected this method for
 this work.
 
-The three translations were thus compared using the evaluation metric
-GEMBA - GPT Estimation Metric Based Assessment \cite{kocmi2023large} using
-GPT3.5-turbo. To use the metric, the prompt was modified to not use human
+The three translations were thus compared using the evaluation metric GEMBA -
+GPT Estimation Metric Based Assessment \cite{kocmi2023large} using GPT3.5-turbo.
+To use the metric, the prompt was modified, removing the usage of human
 reference in the evaluation and to evaluate the translations of the three models
 of this work simultaneously.
 
